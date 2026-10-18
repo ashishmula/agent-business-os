@@ -1,6 +1,6 @@
 # Status board
 
-Generated 2026-10-18T05:19:46Z by `./abos board` · ledger head `976987642978` · chain OK · 18 tasks
+Generated 2026-10-18T10:04:28Z by `./abos board` · ledger head `90b5ca2895cd` · chain OK · 22 tasks
 
 _Generated file. Do not edit by hand; change the ledger instead._
 
@@ -21,11 +21,13 @@ _none_
 | TASK-0005 | MUST | NOT_TESTED | PRD-PLATFORM | G1-phase-2 | builder | Phase 2b Governor: status line script and hooks write the usage ledger and context fill | Ashish installs config/claude-code-settings.json; run one session named TASK-nnnn; ./abos… | 2026-10-18 |
 | TASK-0014 | MUST | REVIEW | PRD-PLATFORM | G2-phase-3 | orchestrator | Adversarial suite: prompt injection via handoffs and web text, memory poisoning, source i… | Muse gate review at end of Phase 3 (in P3 review request) | 2026-10-18 |
 
-## Next (MUST first) (0)
+## Next (MUST first) (1)
 
-_none_
+| Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
+|---|---|---|---|---|---|---|---|---|
+| TASK-0022 | SHOULD | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | tester-c | One unconstrained red-team run against the boundary (Muse R3C-6) |  | 2026-10-18 |
 
-## Done (14)
+## Done (16)
 
 | Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
 |---|---|---|---|---|---|---|---|---|
@@ -38,15 +40,18 @@ _none_
 | TASK-0012 | MUST | DONE | PRD-PLATFORM | G2-phase-3 | orchestrator | Developer + 3 testers loop: take one real feature through builder, tester-a, tester-b, te… | none | 2026-10-18 |
 | TASK-0013 | MUST | DONE | PRD-PLATFORM | G2-phase-3 | orchestrator | Resilience suite: restart/resume from checkpoint, failure recovery, schema errors, duplic… | none | 2026-10-18 |
 | TASK-0018 | MUST | DONE | PRD-PLATFORM | G2-phase-3 | builder | Phase report command: ./abos phase-report <gate> summarises the gate's tasks for the phas… | none | 2026-10-18 |
+| TASK-0019 | MUST | DONE | PRD-PLATFORM | handoff-intake | orchestrator | Handoff P2-MUSE-03c from DOT_MUSE: Verify the four R3B follow-ups against the 03c config … | none | 2026-10-18 |
 | TASK-0007 | SHOULD | DONE | PRD-PLATFORM | G1-phase-2 | builder | Phase 2c subagent definitions (builder, testers A/B/C, security reviewer) with model and … | none | 2026-10-18 |
 | TASK-0008 | SHOULD | DONE | PRD-PLATFORM | G1-phase-2 | builder | Phase 2c Ollama capacity check and golden tasks for qwen2.5:3b | Phase 3: add T0 grounding check, then enable T1 for schema_extraction | 2026-10-18 |
 | TASK-0010 | SHOULD | DONE | PRD-PLATFORM | G1-phase-2 | orchestrator | Push Phase 2 branch to GitHub | Push again after each Phase 2 commit | 2026-10-18 |
 | TASK-0015 | SHOULD | DONE | PRD-PLATFORM | G2-phase-3 | orchestrator | Routing and cost-cap tests: critical never below floor, budget soft/hard behaviour, usage… | none | 2026-10-18 |
 | TASK-0016 | SHOULD | DONE | PRD-PLATFORM | G2-phase-3 | researcher | Capability scout pass: re-check skills, MCP servers and repos for Phase 3-4 needs (promis… | Ashish decides which ADOPT-CANDIDATEs to try (needs approval); llm-guard is archived: NOT… | 2026-10-18 |
+| TASK-0020 | SHOULD | DONE | PRD-PLATFORM | G2-phase-3 | tester-c | Repeatable permission probe: re-run the r3c Write/Read/credential probes after every Clau… | Run tools/live/permission-probe.sh after every Claude Code upgrade | 2026-10-18 |
 
-## Parked (not important now) (1)
+## Parked (not important now) (2)
 
 | Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
 |---|---|---|---|---|---|---|---|---|
 | TASK-0009 | COULD | NOT_STARTED | PRD-PLATFORM | G1-phase-2 | builder | LangGraph workflow for the developer + 3 testers loop with SQLite checkpoints |  | 2026-10-18 |
+| TASK-0021 | COULD | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | tester-c | Keychain and app credential stores as read targets in the adversarial suite (Muse R3C-5) |  | 2026-10-18 |
 

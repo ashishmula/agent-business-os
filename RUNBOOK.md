@@ -11,6 +11,7 @@ All commands run from the repo root on your Mac. Python 3.11+ only; nothing to i
 | Bring in a Muse packet | save it as a `.json` file, then `./abos handoff receive path/to/file.json` |
 | Summarise a gate's tasks for the phase report | `./abos phase-report <gate> [--write reports/<file>.md] [--force]` (verifies the ledger first; `--write` only under `reports/`, no overwrite without `--force`) |
 | Run the tests | `./abos test` (result saved in `test-results/unit/`) |
+| Re-check the safety boundary after a Claude Code upgrade | `tools/live/permission-probe.sh` (runs 2 short Claude Code sessions with canary files; prints PASS or FAIL; record in `test-results/live/`) |
 | Scan files for secrets | `./abos secrets <files>` |
 | See token use per task/day | `./abos usage report` → `reports/usage/<date>.md` |
 | Attribute a Claude Code session to a task | type `/rename TASK-0005 short name` in Claude Code |

@@ -74,6 +74,12 @@ class HostileBundles(TempRepoTest):
         task = self.ledger.get(ack["ledger_task_id"])
         self.assertEqual(task["status"], "NOT_STARTED")  # stored as data; nothing executed
 
+    def test_round_suffix_ids_accepted_others_rejected(self):
+        self.assertNotEqual(self._receive(handoff_bundle(task_id="P2-MUSE-03c"))["result"], "REJECTED")
+        for bad in ("p2-muse-03", "../etc", "P2-MUSE-03cc"):
+            with self.subTest(bad):
+                self.assertEqual(self._receive(handoff_bundle(task_id=bad))["result"], "REJECTED")
+
     def test_stale_input_hash_blocks(self):
         (self.repo / "PROMPT.md").write_text("new version")
         ack = self._receive(handoff_bundle(inputs_read_sha256={"PROMPT.md": "0" * 64}))
