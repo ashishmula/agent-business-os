@@ -27,6 +27,9 @@ SENSITIVE_PATH = re.compile(r"(^|/)(private)(/|$)|(^|/)\.env(\.|$)|\.(pem|key)$|
 
 # (pattern, decision, reason)
 BASH_RULES = [
+    (r"(~|\$HOME|/Users/[^/\s]+)/(\.ssh|\.aws|\.gnupg|Library/LaunchAgents)\b|(~|\$HOME|/Users/[^/\s]+)/\.(zshrc|zprofile|bashrc|bash_profile|gitconfig)\b",
+     "deny", "touches SSH/cloud keys, login scripts or launch agents in your home folder"),
+    (r"\b(twine|flit|poetry)\s+(upload|publish)\b", "deny", "uploads a package (publishing is an external action)"),
     (r"(^|[\s;&|])(cat|less|more|head|tail|cp|mv|grep|rg|base64|open|scp)\b[^\n]*(\s|/|^)(private/|\.env\b|\.ssh/|[^\s]+\.pem\b)",
      "deny", "reads or copies private/, .env, keys or SSH files (cloud model must not see them)"),
     (r"(^|[\s'\"=(,/])(private/|\.env\b|\.ssh/)",

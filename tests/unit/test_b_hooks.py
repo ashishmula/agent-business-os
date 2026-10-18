@@ -72,6 +72,13 @@ class Guard(HookTest):
             with self.subTest(cmd):
                 self.assertEqual(self.guard("Bash", command=cmd), "deny")
 
+    def test_muse_p2_03b_home_writes_and_uploads_denied(self):
+        for cmd in ("echo key >> ~/.ssh/authorized_keys", "cp x $HOME/.aws/credentials",
+                    "echo 'curl x' >> ~/.zshrc", "twine upload dist/*", "cat /Users/ashish/.ssh/id_ed25519"):
+            with self.subTest(cmd):
+                self.assertEqual(self.guard("Bash", command=cmd), "deny")
+        self.assertEqual(self.guard("Write", file_path=str(Path.home() / ".ssh" / "authorized_keys")), "deny")
+
     def test_external_actions_ask(self):
         for cmd in ("git push origin phase-2", "pip install requests", "gh pr create --fill", "ollama pull llama3"):
             with self.subTest(cmd):
@@ -191,6 +198,11 @@ class Settings(unittest.TestCase):
         self.assertFalse(sb["allowUnsandboxedCommands"])
         self.assertIn("./private", sb["filesystem"]["denyRead"])
         self.assertIn("Read(./private/**)", cfg["permissions"]["deny"])
+        self.assertIn("Edit(~/.ssh/**)", cfg["permissions"]["deny"])  # Edit rules cover Write too (Claude Code warns Write(...) never matches)
+        self.assertFalse([r for r in cfg["permissions"]["deny"] if r.startswith("Write(")])
+        self.assertIn("~/.ssh", sb["filesystem"]["denyWrite"])
+        self.assertEqual(sb["network"]["allowedDomains"], [])  # every host needs Ashish's approval
+        self.assertEqual(cfg["env"]["CLAUDE_CODE_SUBPROCESS_ENV_SCRUB"], "1")
         if live.exists() and json.loads(live.read_text()) != cfg:
             self.skipTest("installed .claude/settings.json is out of date: run ./abos install-claude")
 
