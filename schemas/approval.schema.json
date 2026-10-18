@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-business-os/approval.schema.json",
+  "title": "Approval record",
+  "description": "v1.0, approved with Phase 2 start (2026-10-18).",
+  "type": "object",
+  "required": [
+    "approval_id",
+    "action",
+    "scope",
+    "approved_by",
+    "granted_at",
+    "expires_at",
+    "single_use"
+  ],
+  "properties": {
+    "approval_id": {
+      "type": "string",
+      "pattern": "^APR-[0-9]{4,}$"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "approved_by": {
+      "type": "string"
+    },
+    "granted_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "single_use": {
+      "type": "boolean"
+    },
+    "used_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "evidence": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

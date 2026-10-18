@@ -1,0 +1,4 @@
+#!/bin/sh
+# Backbone CLI. Usage: ./abos -h
+here="$(cd "$(dirname "$0")" && pwd)"
+PYTHONPATH="$here/tools${PYTHONPATH:+:$PYTHONPATH}" exec python3 -m abos "$@"

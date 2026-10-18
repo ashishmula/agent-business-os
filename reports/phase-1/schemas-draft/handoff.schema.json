@@ -1,0 +1,242 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-business-os/handoff.schema.json",
+  "title": "Cross-environment handoff envelope v1.0",
+  "description": "DRAFT v1.0 (Section 4 envelope). product_id and task_key are filled by the receiver. Revised 2026-10-18 after P1-MUSE-01/02.",
+  "type": "object",
+  "required": [
+    "handoff_schema_version",
+    "project_id",
+    "task_id",
+    "from_environment",
+    "to_environment",
+    "status",
+    "objective",
+    "inputs",
+    "evidence_ids",
+    "acceptance_criteria",
+    "next_action",
+    "approval_required",
+    "security_or_privacy_notes"
+  ],
+  "properties": {
+    "handoff_schema_version": {
+      "const": "1.0"
+    },
+    "project_id": {
+      "type": "string"
+    },
+    "product_id": {
+      "type": "string",
+      "pattern": "^PRD-[A-Z0-9-]+$"
+    },
+    "task_id": {
+      "type": "string",
+      "pattern": "^(TASK-[0-9]{4,}|[A-Z0-9]+(-[A-Z0-9]+)+)$",
+      "description": "Internal TASK-nnnn, or a sender's external ID mapped at ACK"
+    },
+    "task_key": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "parent_task_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^TASK-[0-9]{4,}$"
+      }
+    },
+    "from_environment": {
+      "enum": [
+        "DOT_MUSE",
+        "CLAUDE_CODE",
+        "OLLAMA_LOCAL",
+        "HUMAN"
+      ]
+    },
+    "from_agent": {
+      "type": "string"
+    },
+    "to_environment": {
+      "enum": [
+        "DOT_MUSE",
+        "CLAUDE_CODE",
+        "OLLAMA_LOCAL",
+        "HUMAN"
+      ]
+    },
+    "to_agent": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "NOT_STARTED",
+        "IN_PROGRESS",
+        "BLOCKED",
+        "WAITING_FOR_APPROVAL",
+        "REVIEW",
+        "CHANGES_REQUESTED",
+        "FAILED",
+        "NOT_TESTED",
+        "VERIFIED",
+        "PASSED",
+        "DONE",
+        "SKIPPED_NOT_APPLICABLE",
+        "READY"
+      ]
+    },
+    "objective": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "context_brief": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "artifact_id",
+          "path_or_uri",
+          "version_or_hash"
+        ],
+        "properties": {
+          "artifact_id": {
+            "type": "string"
+          },
+          "path_or_uri": {
+            "type": "string"
+          },
+          "version_or_hash": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "findings_or_changes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(SRC|TEST|EXT)-[A-Za-z0-9-]+$"
+      }
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "state"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "NOT_TESTED"
+            ]
+          },
+          "evidence": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "assumptions_and_confidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "assumption",
+          "confidence"
+        ],
+        "properties": {
+          "assumption": {
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "known_failures": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "untested_gaps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "security_or_privacy_notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "model_and_tool_usage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "provider_or_tool": {
+            "type": "string"
+          },
+          "model_version": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "cost_or_usage": {
+            "type": "string"
+          },
+          "measurement": {
+            "enum": [
+              "MEASURED",
+              "ESTIMATED"
+            ]
+          }
+        }
+      }
+    },
+    "next_action": {
+      "type": "string"
+    },
+    "approval_required": {
+      "type": "boolean"
+    },
+    "inputs_read_sha256": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      },
+      "description": "sha256 of each repo file the sender read, for freshness checks"
+    }
+  },
+  "additionalProperties": false
+}

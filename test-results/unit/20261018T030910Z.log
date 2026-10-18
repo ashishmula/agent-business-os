@@ -1,0 +1,47 @@
+test_same_verdicts (test_a_spec.ParityWithJsonschema.test_same_verdicts) ... ok
+test_done_and_fresh_reused (test_a_spec.Preflight.test_done_and_fresh_reused) ... ok
+test_done_but_stale_is_delta (test_a_spec.Preflight.test_done_but_stale_is_delta) ... ok
+test_missing_dependency_blocked (test_a_spec.Preflight.test_missing_dependency_blocked) ... ok
+test_new_task_runs (test_a_spec.Preflight.test_new_task_runs) ... ok
+test_no_acceptance_criteria_rejected (test_a_spec.Preflight.test_no_acceptance_criteria_rejected) ... ok
+test_not_now_parked (test_a_spec.Preflight.test_not_now_parked) ... ok
+test_open_duplicate_reused_not_rerun (test_a_spec.Preflight.test_open_duplicate_reused_not_rerun) ... ok
+test_bool_is_not_integer (test_a_spec.SchemaValidator.test_bool_is_not_integer) ... ok
+test_each_rule_fails (test_a_spec.SchemaValidator.test_each_rule_fails) ... ok
+test_repo_schemas_supported (test_a_spec.SchemaValidator.test_repo_schemas_supported) ... ok
+test_unsupported_keyword_fails_closed (test_a_spec.SchemaValidator.test_unsupported_keyword_fails_closed) ... ok
+test_valid (test_a_spec.SchemaValidator.test_valid) ... ok
+test_changed_input_changes_key (test_a_spec.TaskKey.test_changed_input_changes_key) ... ok
+test_rewording_and_input_order_do_not_change_key (test_a_spec.TaskKey.test_rewording_and_input_order_do_not_change_key) ... ok
+test_all_config_parses (test_b_config.Config.test_all_config_parses) ... ok
+test_critical_floors_are_t4 (test_b_config.Config.test_critical_floors_are_t4) ... ok
+test_no_secrets_in_config (test_b_config.Config.test_no_secrets_in_config) ... ok
+test_t1_off_and_no_active_local_model_until_benchmarked (test_b_config.Config.test_t1_off_and_no_active_local_model_until_benchmarked) ... ok
+test_thresholds_ordered (test_b_config.Config.test_thresholds_ordered) ... ok
+test_board_has_all_sections (test_b_integration.HandoffToBoard.test_board_has_all_sections) ... ok
+test_fresh_input_hash_passes (test_b_integration.HandoffToBoard.test_fresh_input_hash_passes) ... ok
+test_real_muse_packet_accepted_with_warning (test_b_integration.HandoffToBoard.test_real_muse_packet_accepted_with_warning) ... ok
+test_valid_bundle_flows_to_ledger_and_board (test_b_integration.HandoffToBoard.test_valid_bundle_flows_to_ledger_and_board) ... ok
+test_create_update_survive_restart (test_b_integration.LedgerPersistence.test_create_update_survive_restart) ... ok
+test_critical_needs_review_before_done (test_b_integration.LedgerPersistence.test_critical_needs_review_before_done) ... ok
+test_done_requires_outputs_and_evidence (test_b_integration.LedgerPersistence.test_done_requires_outputs_and_evidence) ... ok
+test_duplicate_request_is_reused_not_duplicated (test_b_integration.LedgerPersistence.test_duplicate_request_is_reused_not_duplicated) ... ok
+test_missing_dependency_blocks_task (test_b_integration.LedgerPersistence.test_missing_dependency_blocks_task) ... ok
+test_sqlite_export_is_queryable (test_b_integration.LedgerPersistence.test_sqlite_export_is_queryable) ... ok
+test_instruction_like_text_flagged_not_followed (test_c_adversarial.HostileBundles.test_instruction_like_text_flagged_not_followed) ... ok
+test_schema_violation_rejected (test_c_adversarial.HostileBundles.test_schema_violation_rejected) ... ok
+test_secret_in_bundle_rejected_and_not_stored (test_c_adversarial.HostileBundles.test_secret_in_bundle_rejected_and_not_stored) ... ok
+test_stale_input_hash_blocks (test_c_adversarial.HostileBundles.test_stale_input_hash_blocks) ... ok
+test_truncated_bundle_rejected (test_c_adversarial.HostileBundles.test_truncated_bundle_rejected) ... ok
+test_unknown_version_rejected (test_c_adversarial.HostileBundles.test_unknown_version_rejected) ... ok
+test_clean_text_passes (test_c_adversarial.SecretScanner.test_clean_text_passes) ... ok
+test_detects_common_formats (test_c_adversarial.SecretScanner.test_detects_common_formats) ... ok
+test_deleted_event_detected (test_c_adversarial.Tampering.test_deleted_event_detected) ... ok
+test_edited_event_detected_and_writes_refused (test_c_adversarial.Tampering.test_edited_event_detected_and_writes_refused) ... ok
+test_reopen_finished_task_needs_reason (test_c_adversarial.Tampering.test_reopen_finished_task_needs_reason) ... ok
+test_unknown_field_rejected (test_c_adversarial.Tampering.test_unknown_field_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 42 tests in 0.069s
+
+OK

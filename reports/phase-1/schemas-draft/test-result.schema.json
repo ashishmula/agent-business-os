@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-business-os/test-result.schema.json",
+  "title": "Immutable test result",
+  "description": "DRAFT from Phase 1 report; not yet approved.",
+  "type": "object",
+  "required": [
+    "test_id",
+    "run_at",
+    "tester_role",
+    "command",
+    "exit_status",
+    "raw_output_path",
+    "raw_output_hash",
+    "subject_hash"
+  ],
+  "properties": {
+    "test_id": {
+      "type": "string",
+      "pattern": "^TEST-[0-9]{4,}$"
+    },
+    "run_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tester_role": {
+      "enum": [
+        "A_SPEC",
+        "B_INTEGRATION",
+        "C_ADVERSARIAL",
+        "EVAL"
+      ]
+    },
+    "command": {
+      "type": "string"
+    },
+    "software_versions": {
+      "type": "object"
+    },
+    "exit_status": {
+      "type": "integer"
+    },
+    "result": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "NOT_TESTED",
+        "BLOCKED"
+      ]
+    },
+    "raw_output_path": {
+      "type": "string"
+    },
+    "raw_output_hash": {
+      "type": "string"
+    },
+    "subject_hash": {
+      "type": "string"
+    },
+    "linked_defect": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "supersedes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

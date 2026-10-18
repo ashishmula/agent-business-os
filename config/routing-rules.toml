@@ -1,0 +1,83 @@
+# Model Router rules (PROMPT.md 9.3). Lowest tier that has passed the task's golden
+# tasks; with no benchmark yet, start_tier is a conservative guess.
+
+tiers = ["T0", "T1", "T2", "T3", "T4"]
+t1_enabled = false   # Ollama stays off until qwen2.5:3b passes golden tasks (Muse risk 3)
+t1_fallback = "T0 if a script can do it, else T2; private content with no T1 -> BLOCKED"
+
+[escalation]
+on = ["schema_validation_failure", "missing_evidence", "reviewer_rejection", "model_quality_test_failure", "retries_exceeded"]
+step = 1
+de_escalate_requires = "before/after golden-task evidence (PROMPT.md 9.2.5)"
+
+[privacy]
+PRIVATE = "T0/T1 only unless an APR-* approval record allows a cloud model"
+
+[[rule]]
+task = "deterministic"   # calculations, hashes, dates, state, tests, rule-based dedup
+risk = "any"
+start_tier = "T0"
+floor = "T0"
+
+[[rule]]
+task = "schema_extraction"
+risk = "STANDARD"
+start_tier = "T1"
+floor = "T1"
+review = "T0 schema check + 10% T3 sample"
+
+[[rule]]
+task = "classification_triage"
+risk = "LOW"
+start_tier = "T1"
+floor = "T1"
+review = "T0 schema check"
+
+[[rule]]
+task = "short_summary"
+risk = "LOW"
+start_tier = "T2"
+floor = "T1"
+
+[[rule]]
+task = "routine_code_edit"
+risk = "STANDARD"
+start_tier = "T3"
+floor = "T2"
+review = "Tester A"
+
+[[rule]]
+task = "new_code"
+risk = "STANDARD"
+start_tier = "T3"
+floor = "T3"
+review = "Testers A/B/C"
+
+[[rule]]
+task = "research_synthesis"
+risk = "STANDARD"
+start_tier = "T4"
+environment = "DOT_MUSE"
+floor = "T3"
+review = "Claude challenger"
+
+[[rule]]
+task = "architecture_or_security_review"
+risk = "CRITICAL"
+start_tier = "T4"
+floor = "T4"
+review = "different model or provider"
+
+[[rule]]
+task = "regulatory_quality_matrix"
+risk = "CRITICAL"
+start_tier = "T4"
+floor = "T4"
+review = "different provider + human professional"
+
+[[rule]]
+task = "financial_model_go_no_go_supplier_shortlist"
+risk = "CRITICAL"
+start_tier = "T4"
+floor = "T4"
+review = "different provider + Ashish"

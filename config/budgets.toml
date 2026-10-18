@@ -1,0 +1,37 @@
+# Context & Token Governor thresholds (PROMPT.md 9.2). Non-secret config only.
+# Plan limits are NOT hardcoded: the Claude Code status line reports live
+# rate_limits.five_hour / seven_day used % and reset times; budgets below are % of those.
+
+[source]
+plan = "Claude Pro (Ashish, 2026-10-18)"
+defaults_from = "PROMPT.md 9.2"
+checked = "2026-10-18"
+status = "INITIAL — tune after the first week of measured usage"
+
+[context]            # per session, % of that model's real context window
+warn_pct = 60        # pointers only, no new large reads
+act_pct = 75         # write checkpoint, then compact or rotate
+hard_pct = 85        # finish the atomic step, checkpoint, rotate
+
+[windows.five_hour]
+soft_pct = 70        # Router shifts eligible work down a tier, queues non-urgent work
+hard_pct = 90        # pause non-critical agents, checkpoint, tell Ashish what is paused
+reserve_pct = 20     # kept for review gates, regression tests, checkpoints, urgent work
+
+[windows.seven_day]
+soft_pct = 70
+hard_pct = 90
+reserve_pct = 20
+
+[workstream_share_pct]   # of what remains outside the reserve
+platform_build = 50
+research = 30
+governance_overhead = 5  # Governor/Router own LLM use; target < 5%
+slack = 15
+
+[retries]
+max_per_task = 2         # then escalate one tier or mark FAILED
+
+[muse]
+plan = "free; weekly allowance used until 2026-10-22T03:42-04:00 (P1-MUSE-01)"
+policy = "MUST research only, batched into few bundles, until the allowance resets"

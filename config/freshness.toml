@@ -1,0 +1,9 @@
+# How long evidence stays fresh before the pre-flight check asks for a refresh
+# (PROMPT.md 10.6). Draft values; adjust per product and jurisdiction.
+
+[days]
+REGULATION = 180
+PRICE_QUOTE = 30
+PRODUCT_DATA = 90
+SOFTWARE = 30      # versions, release status, security advisories
+BACKGROUND = 365

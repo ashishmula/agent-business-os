@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-business-os/checkpoint.schema.json",
+  "title": "Session/workflow checkpoint",
+  "description": "DRAFT from Phase 1 report; not yet approved.",
+  "type": "object",
+  "required": [
+    "checkpoint_id",
+    "created_at",
+    "session_id",
+    "task_id",
+    "current_step",
+    "next_action",
+    "ledger_hash",
+    "pointers"
+  ],
+  "properties": {
+    "checkpoint_id": {
+      "type": "string",
+      "pattern": "^CKP-[0-9]{4,}$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "trigger": {
+      "enum": [
+        "PRECOMPACT",
+        "CONTEXT_ACT",
+        "CONTEXT_HARD",
+        "BUDGET",
+        "MANUAL",
+        "WORKFLOW_STEP"
+      ]
+    },
+    "session_id": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "workflow_run": {
+      "type": "string"
+    },
+    "current_step": {
+      "type": "string"
+    },
+    "next_action": {
+      "type": "string"
+    },
+    "open_defects": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^DEF-[0-9]{4,}$"
+      }
+    },
+    "pending_approvals": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^APR-[0-9]{4,}$"
+      }
+    },
+    "ledger_hash": {
+      "type": "string"
+    },
+    "pointers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "artifact_id",
+          "path_or_uri",
+          "version_or_hash"
+        ],
+        "properties": {
+          "artifact_id": {
+            "type": "string"
+          },
+          "path_or_uri": {
+            "type": "string"
+          },
+          "version_or_hash": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 3000
+    }
+  },
+  "additionalProperties": false
+}

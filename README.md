@@ -2,7 +2,7 @@
 
 A multi-agent operating system that coordinates **Claude Code**, **Dot/Muse** and **local Ollama models** with one shared source of truth — first used for a white-label coffee-protein shake business, then for a portfolio of other white-label products started small locally (`PROMPT.md` Section 6B), and reusable for future projects.
 
-**Status:** Phase 1 (research and architecture) — not started. Nothing installed or built yet.
+**Status:** Phase 1 approved 2026-10-18 ([report](reports/phase-1/README.md)). Phase 2 in progress: backbone built (`./abos`, see [RUNBOOK.md](RUNBOOK.md) and [state/status-board.md](state/status-board.md)).
 
 ## Files
 

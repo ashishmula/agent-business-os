@@ -6,6 +6,9 @@
 secrets/
 credentials*
 
+# Private business content: processed only by local scripts / local models (see SECURITY.md)
+private/
+
 # Local runtime noise
 logs/*.log
 *.sqlite-journal
@@ -17,6 +20,10 @@ venv/
 node_modules/
 .idea/
 .vscode/
+
+# Derived or lock files (rebuildable from the canonical event log)
+state/.write.lock
+state/task-ledger/ledger.sqlite
 
 # Claude Code local settings (personal)
 .claude/settings.local.json

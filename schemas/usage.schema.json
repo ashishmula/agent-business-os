@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-business-os/usage.schema.json",
+  "title": "Usage ledger record v1.0",
+  "description": "v1.0, approved with Phase 2 start (2026-10-18).",
+  "type": "object",
+  "required": [
+    "usage_schema_version",
+    "timestamp",
+    "environment",
+    "agent",
+    "task_id",
+    "model",
+    "tier",
+    "measurement"
+  ],
+  "properties": {
+    "usage_schema_version": {
+      "const": "1.0"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "environment": {
+      "enum": [
+        "DOT_MUSE",
+        "CLAUDE_CODE",
+        "OLLAMA_LOCAL"
+      ]
+    },
+    "session_id": {
+      "type": "string"
+    },
+    "agent": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "product_id": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "tier": {
+      "enum": [
+        "T0",
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ]
+    },
+    "input_tokens": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "output_tokens": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "cache_read_tokens": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "cache_write_tokens": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "latency_ms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "context_fill_pct": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "cost_or_usage_estimate": {
+      "type": "string"
+    },
+    "measurement": {
+      "enum": [
+        "MEASURED",
+        "ESTIMATED"
+      ]
+    },
+    "estimation_method": {
+      "type": "string"
+    },
+    "source": {
+      "enum": [
+        "STATUSLINE",
+        "OTEL",
+        "HOOK",
+        "TRANSCRIPT",
+        "OLLAMA_API",
+        "BUNDLE_SIZE"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

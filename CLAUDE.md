@@ -4,14 +4,15 @@ Keep this file short: it loads into every session.
 
 ## What to read
 - **First session only:** read `PROMPT.md` in full. It is the project brief and the rules.
-- **Every later session:** read `state/status-board.md`, the latest checkpoint and ledgers in `state/`, and your own file in `memory/agents/` first (once they exist), then only the `PROMPT.md` sections the current task needs. Never rebuild project state from chat memory.
+- **Every later session:** run `./abos ledger verify`, read `state/status-board.md`, and your own file in `memory/agents/` first, then only the `PROMPT.md` sections the current task needs. Never rebuild project state from chat memory. Commands: `RUNBOOK.md`.
 - **Before any task:** run the pre-flight check (`PROMPT.md` 10.3) — is it already done, are its dependencies done, is it a MUST/SHOULD right now, what does done look like?
 
 ## Current phase
-- **Phase 1 — research and architecture only.**
-- Allowed writes in Phase 1: `reports/phase-1/` only (the Phase 1 report, diagrams, scorecards, adoption matrix).
-- Everything else is read-only until Ashish approves: no installs, clones, code execution from downloaded repos, accounts, credentials, or new folders outside `reports/phase-1/`.
-- Stop and ask for approval at the end of Phase 1.
+- **Phase 2 — build the backbone** (approved by Ashish 2026-10-18, `state/approvals.jsonl` APR-0001).
+- Allowed: local code, folders, schemas, config, tests and local git commits in this repo.
+- Still needs approval: paid tools, new external accounts or credentials, pushing to GitHub, anything that contacts people, and starting Phase 4 business research.
+- Change project state only through `./abos` (ledger, handoffs, board). Run `./abos test` before committing.
+- Stop and ask for approval at the end of Phase 2.
 
 ## Always
 - No secrets, keys or tokens in this repo, in reports, or in memory.

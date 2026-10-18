@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-business-os/evidence.schema.json",
+  "title": "Evidence / source registry entry",
+  "description": "DRAFT from Phase 1 report; not yet approved.",
+  "type": "object",
+  "required": [
+    "source_id",
+    "url_or_path",
+    "title",
+    "source_type",
+    "accessed_at",
+    "freshness_class"
+  ],
+  "properties": {
+    "source_id": {
+      "type": "string",
+      "pattern": "^SRC-[0-9]{4,}$"
+    },
+    "url_or_path": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "source_type": {
+      "enum": [
+        "PRIMARY_REGULATOR",
+        "PRIMARY_OFFICIAL",
+        "PEER_REVIEWED",
+        "MANUFACTURER",
+        "REPO_DOCS",
+        "SECONDARY",
+        "ANECDOTAL"
+      ]
+    },
+    "accessed_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "published_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "freshness_class": {
+      "enum": [
+        "REGULATION",
+        "PRICE_QUOTE",
+        "PRODUCT_DATA",
+        "BACKGROUND",
+        "SOFTWARE"
+      ]
+    },
+    "excerpt_path": {
+      "type": "string"
+    },
+    "content_hash": {
+      "type": "string"
+    },
+    "access_restrictions": {
+      "type": "string"
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "INSTRUCTION_LIKE_CONTENT",
+          "CONTRADICTS_OTHER",
+          "STALE",
+          "UNVERIFIED"
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}

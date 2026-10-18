@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-business-os/task.schema.json",
+  "title": "Task ledger record",
+  "description": "v1.0, approved with Phase 2 start (2026-10-18).",
+  "type": "object",
+  "required": [
+    "task_id",
+    "task_key",
+    "project_id",
+    "product_id",
+    "objective",
+    "owner_agent",
+    "status",
+    "priority",
+    "priority_reason",
+    "serves_gate",
+    "acceptance_criteria",
+    "updated_at"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "pattern": "^TASK-[0-9]{4,}$"
+    },
+    "task_key": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "project_id": {
+      "type": "string"
+    },
+    "product_id": {
+      "type": "string"
+    },
+    "objective": {
+      "type": "string"
+    },
+    "owner_agent": {
+      "type": "string"
+    },
+    "reviewers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "enum": [
+        "NOT_STARTED",
+        "IN_PROGRESS",
+        "BLOCKED",
+        "WAITING_FOR_APPROVAL",
+        "REVIEW",
+        "CHANGES_REQUESTED",
+        "FAILED",
+        "NOT_TESTED",
+        "VERIFIED",
+        "PASSED",
+        "DONE",
+        "SKIPPED_NOT_APPLICABLE",
+        "READY"
+      ]
+    },
+    "priority": {
+      "enum": [
+        "MUST",
+        "SHOULD",
+        "COULD",
+        "NOT_NOW"
+      ]
+    },
+    "priority_reason": {
+      "type": "string"
+    },
+    "serves_gate": {
+      "type": "string"
+    },
+    "risk_class": {
+      "enum": [
+        "CRITICAL",
+        "STANDARD",
+        "LOW"
+      ]
+    },
+    "privacy_class": {
+      "enum": [
+        "PUBLIC",
+        "INTERNAL",
+        "PRIVATE"
+      ]
+    },
+    "depends_on": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^TASK-[0-9]{4,}$"
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "artifact_id",
+          "path_or_uri",
+          "version_or_hash"
+        ],
+        "properties": {
+          "artifact_id": {
+            "type": "string"
+          },
+          "path_or_uri": {
+            "type": "string"
+          },
+          "version_or_hash": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "artifact_id",
+          "path_or_uri",
+          "version_or_hash"
+        ],
+        "properties": {
+          "artifact_id": {
+            "type": "string"
+          },
+          "path_or_uri": {
+            "type": "string"
+          },
+          "version_or_hash": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "freshness_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "review_status": {
+      "enum": [
+        "NONE",
+        "PENDING",
+        "PASSED",
+        "REJECTED"
+      ]
+    },
+    "preflight": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "enum": [
+            "RUN",
+            "REUSE",
+            "DELTA",
+            "BLOCKED",
+            "PARKED",
+            "REJECTED"
+          ]
+        },
+        "checked_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "reused_task_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "result",
+        "checked_at",
+        "reasons"
+      ]
+    },
+    "next_action": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "external_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "previous_task_id": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

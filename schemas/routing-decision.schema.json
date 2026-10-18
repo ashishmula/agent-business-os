@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-business-os/routing-decision.schema.json",
+  "title": "Router decision record",
+  "description": "v1.0, approved with Phase 2 start (2026-10-18).",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "timestamp",
+    "task_id",
+    "risk_class",
+    "privacy_class",
+    "chosen_tier",
+    "chosen_environment",
+    "reason",
+    "outcome"
+  ],
+  "properties": {
+    "decision_id": {
+      "type": "string",
+      "pattern": "^RTE-[0-9]{4,}$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "risk_class": {
+      "enum": [
+        "CRITICAL",
+        "STANDARD",
+        "LOW"
+      ]
+    },
+    "privacy_class": {
+      "enum": [
+        "PUBLIC",
+        "INTERNAL",
+        "PRIVATE"
+      ]
+    },
+    "chosen_tier": {
+      "enum": [
+        "T0",
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ]
+    },
+    "floor_tier": {
+      "enum": [
+        "T0",
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ]
+    },
+    "chosen_environment": {
+      "enum": [
+        "DOT_MUSE",
+        "CLAUDE_CODE",
+        "OLLAMA_LOCAL",
+        "HUMAN"
+      ]
+    },
+    "model": {
+      "type": "string"
+    },
+    "alternatives": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reason": {
+      "type": "string"
+    },
+    "budget_state": {
+      "type": "object",
+      "properties": {
+        "five_hour_pct": {
+          "type": "number"
+        },
+        "seven_day_pct": {
+          "type": "number"
+        },
+        "reserve_intact": {
+          "type": "boolean"
+        }
+      }
+    },
+    "escalated_from": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "outcome": {
+      "enum": [
+        "PENDING",
+        "PASS",
+        "FAIL",
+        "ESCALATED",
+        "QUEUED",
+        "BLOCKED"
+      ]
+    },
+    "tokens_or_cost": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}
