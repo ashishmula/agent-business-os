@@ -1,6 +1,6 @@
 # Status board
 
-Generated 2026-10-18T03:30:48Z by `./abos board` · ledger head `27341d3cd9c5` · chain OK · 10 tasks
+Generated 2026-10-18T03:34:12Z by `./abos board` · ledger head `d85a68fca723` · chain OK · 10 tasks
 
 _Generated file. Do not edit by hand; change the ledger instead._
 
@@ -21,19 +21,18 @@ _none_
 | TASK-0006 | MUST | REVIEW | PRD-PLATFORM | G1-phase-2 | builder | Phase 2b security hooks: PreToolUse deny-list, block reads of private/, approval check fo… | Install settings; independent security review (different model) before DONE | 2026-10-18 |
 | TASK-0007 | SHOULD | NOT_TESTED | PRD-PLATFORM | G1-phase-2 | builder | Phase 2c subagent definitions (builder, testers A/B/C, security reviewer) with model and … | Ashish runs ./abos install-claude, restarts Claude Code; then live-check agents + hooks i… | 2026-10-18 |
 
-## Next (MUST first) (1)
+## Next (MUST first) (0)
 
-| Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
-|---|---|---|---|---|---|---|---|---|
-| TASK-0008 | SHOULD | NOT_STARTED | PRD-PLATFORM | G1-phase-2 | builder | Phase 2c Ollama capacity check and golden tasks for qwen2.5:3b |  | 2026-10-18 |
+_none_
 
-## Done (4)
+## Done (5)
 
 | Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
 |---|---|---|---|---|---|---|---|---|
 | TASK-0001 | MUST | DONE | PRD-PLATFORM | handoff-intake | orchestrator | Handoff P1-MUSE-01 from DOT_MUSE: Report the DOT_MUSE (Muse) environment's real, verified… | Ask Muse to include security_or_privacy_notes and inputs_read_sha256 in future packets | 2026-10-18 |
 | TASK-0002 | MUST | DONE | PRD-PLATFORM | handoff-intake | orchestrator | Handoff P1-MUSE-02 from DOT_MUSE: Give an independent first view of PROMPT.md: top risks,… | Ask Muse to include security_or_privacy_notes and inputs_read_sha256 in future packets | 2026-10-18 |
 | TASK-0004 | MUST | DONE | PRD-PLATFORM | G1-phase-2 | builder | Phase 2a backbone: ledger, pre-flight, handoff intake, status board, schemas, config, sec… | Start Phase 2b | 2026-10-18 |
+| TASK-0008 | SHOULD | DONE | PRD-PLATFORM | G1-phase-2 | builder | Phase 2c Ollama capacity check and golden tasks for qwen2.5:3b | Phase 3: add T0 grounding check, then enable T1 for schema_extraction | 2026-10-18 |
 | TASK-0010 | SHOULD | DONE | PRD-PLATFORM | G1-phase-2 | orchestrator | Push Phase 2 branch to GitHub | Push again after each Phase 2 commit | 2026-10-18 |
 
 ## Parked (not important now) (1)

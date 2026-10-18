@@ -2,7 +2,7 @@
 # tasks; with no benchmark yet, start_tier is a conservative guess.
 
 tiers = ["T0", "T1", "T2", "T3", "T4"]
-t1_enabled = false   # Ollama stays off until qwen2.5:3b passes golden tasks (Muse risk 3)
+t1_enabled = false   # qwen2.5:3b passed extraction golden tasks (EVAL-20261018033333) but invents unstated values; on after the T0 grounding check
 t1_fallback = "T0 if a script can do it, else T2; private content with no T1 -> BLOCKED"
 
 [escalation]

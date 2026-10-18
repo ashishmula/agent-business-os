@@ -36,6 +36,8 @@ def main(argv: list[str] | None = None) -> int:
     use = sub.add_parser("usage", help="usage ledger from status-line snapshots").add_subparsers(dest="action", required=True)
     use.add_parser("report", help="rebuild state/usage-ledger and reports/usage per day")
 
+    lev = sub.add_parser("eval-local", help="run golden extraction tasks on a local Ollama model")
+    lev.add_argument("--model", default="qwen2.5:3b")
     sub.add_parser("install-claude", help="copy reviewed settings + subagents into .claude/")
     sub.add_parser("board", help="regenerate state/status-board.md")
     sub.add_parser("test", help="run the test suite and store an immutable result record")
@@ -83,6 +85,11 @@ def main(argv: list[str] | None = None) -> int:
             written = report()
             print("\n".join(str(p.relative_to(REPO_ROOT)) for p in written) or "no snapshots yet")
             return 0
+        if args.cmd == "eval-local":
+            from .localeval import run
+            rec = run(args.model)
+            print(json.dumps({k: v for k, v in rec.items() if k != "rows"}, indent=2))
+            return 0 if rec["result"] == "PASS" else 1
         if args.cmd == "install-claude":
             from .install import install
             changes = install()
