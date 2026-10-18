@@ -1,6 +1,6 @@
 # Status board
 
-Generated 2026-10-18T11:10:34Z by `./abos board` · ledger head `20927899dc3e` · chain OK · 26 tasks
+Generated 2026-10-18T11:15:30Z by `./abos board` · ledger head `567ff76ebf78` · chain OK · 37 tasks
 
 _Generated file. Do not edit by hand; change the ledger instead._
 
@@ -18,10 +18,21 @@ _none_
 |---|---|---|---|---|---|---|---|---|
 | TASK-0005 | MUST | NOT_TESTED | PRD-PLATFORM | G1-phase-2 | builder | Phase 2b Governor: status line script and hooks write the usage ledger and context fill | Ashish: start one claude session, run /rename TASK-0005 governor check, ask one small que… | 2026-10-18 |
 
-## Next (MUST first) (1)
+## Next (MUST first) (12)
 
 | Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
 |---|---|---|---|---|---|---|---|---|
+| TASK-0027 | MUST | NOT_STARTED | PRD-COFFEE-PROTEIN | G3-phase-4 | researcher | R0 Market selection: score Canada, US, UK/EU, Australia and other online-reachable market… |  | 2026-10-18 |
+| TASK-0028 | MUST | NOT_STARTED | PRD-COFFEE-PROTEIN | G3-phase-4 | researcher | R1 Market, segments, jobs/pains, substitutes and competitor table for coffee-protein prod… |  | 2026-10-18 |
+| TASK-0029 | MUST | NOT_STARTED | PRD-COFFEE-PROTEIN | G3-phase-4 | researcher | R2 Unit pricing scan: price per serving and per gram of protein, GTA retail and online |  | 2026-10-18 |
+| TASK-0030 | MUST | NOT_STARTED | PRD-COFFEE-PROTEIN | G3-phase-4 | researcher | R3 At least 3 niche/positioning routes with kill criteria |  | 2026-10-18 |
+| TASK-0031 | MUST | NOT_STARTED | PRD-COFFEE-PROTEIN | G3-phase-4 | researcher | R4 Format decision matrix: RTD vs powder, dairy vs plant |  | 2026-10-18 |
+| TASK-0032 | MUST | NOT_STARTED | PRD-COFFEE-PROTEIN | G3-phase-4 | researcher | R5 Canada regulatory path: Health Canada/CFIA, supplemented foods, caffeine, labelling |  | 2026-10-18 |
+| TASK-0033 | MUST | NOT_STARTED | PRD-COFFEE-PROTEIN | G3-phase-4 | researcher | R6 Manufacturer longlist to shortlist of 3+ co-packers (no contact) |  | 2026-10-18 |
+| TASK-0034 | MUST | NOT_STARTED | PRD-COFFEE-PROTEIN | G3-phase-4 | researcher | R7 Quality and testing plan |  | 2026-10-18 |
+| TASK-0035 | MUST | NOT_STARTED | PRD-COFFEE-PROTEIN | G3-phase-4 | builder | R8 Financial model: 3+ scenarios, landed COGS, break-even, runway within CAD 10-15k |  | 2026-10-18 |
+| TASK-0036 | MUST | NOT_STARTED | PRD-COFFEE-PROTEIN | G3-phase-4 | researcher | R9 Go-to-market: B2C vs B2B vs hybrid, demand tests, stop-loss |  | 2026-10-18 |
+| TASK-0037 | MUST | NOT_STARTED | PRD-COFFEE-PROTEIN | G3-phase-4 | orchestrator | R10 Roadmap, decision dossier and go/no-go |  | 2026-10-18 |
 | TASK-0022 | SHOULD | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | tester-c | One unconstrained red-team run against the boundary (Muse R3C-6) |  | 2026-10-18 |
 
 ## Done (22)
