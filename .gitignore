@@ -11,6 +11,7 @@ private/
 
 # Local runtime noise
 logs/*.log
+logs/*.jsonl
 *.sqlite-journal
 .DS_Store
 __pycache__/
@@ -27,3 +28,6 @@ state/task-ledger/ledger.sqlite
 
 # Claude Code local settings (personal)
 .claude/settings.local.json
+
+# Per-session Governor snapshots (may hold session names); reports/usage keeps the summaries
+state/context-sessions/*.jsonl

@@ -56,10 +56,18 @@ review = "Testers A/B/C"
 [[rule]]
 task = "research_synthesis"
 risk = "STANDARD"
+start_tier = "T3"
+environment = "CLAUDE_CODE"   # DEC-0002: Claude does research; Muse no longer the primary researcher
+floor = "T3"
+review = "Tester B (T3); CRITICAL findings go to the gate review below"
+
+[[rule]]
+task = "gate_challenger_review"   # independent second opinion at CRITICAL gates only (DEC-0002)
+risk = "CRITICAL"
 start_tier = "T4"
 environment = "DOT_MUSE"
-floor = "T3"
-review = "Claude challenger"
+floor = "T4"
+review = "Ashish relays the bundle by hand; result returns as a handoff packet"
 
 [[rule]]
 task = "architecture_or_security_review"

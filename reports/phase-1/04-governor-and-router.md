@@ -74,7 +74,7 @@ flowchart LR
 | Short summaries with source IDs | LOW | public | T2 | T1 | — |
 | Routine code edits, docs | STANDARD | public | T3 | T2 | Tester A |
 | New code, schemas, workflows | STANDARD | public | T3 | T3 | Testers A/B/C |
-| Market/competitor research synthesis | STANDARD | public | T4 (Dot/Muse) | T3 | Claude challenger |
+| Market/competitor research synthesis | STANDARD | public | T3 (Claude; was T4 Dot/Muse, changed by DEC-0002) | T3 | Tester B; Muse only at CRITICAL gates |
 | Architecture approval, security review | CRITICAL | public | T4 | T4 | Different model/provider |
 | Regulatory/quality matrix | CRITICAL | public | T4 | T4 | Different provider + **human professional** |
 | Financial model, go/no-go, supplier shortlist | CRITICAL | private | T4 (cloud only with your approval) | T4 | Different provider + you |
@@ -129,6 +129,8 @@ flowchart LR
   status: ACTIVE
   source: "handoff P1-MUSE-01 (sha256 00350acb…4ca4), received 2026-10-18"
 ```
+
+**Update 2026-10-18 (DEC-0002):** Muse is now used only for challenger reviews at CRITICAL gates; all research runs in Claude Code.
 
 **Muse budget rule:** until 2026-10-22 every Muse task draws on the extra balance, so the Router batches Muse work into few, larger bundles and sends only `MUST` research. Challenger review of this report (P1-MUSE-03) is the one Muse task worth running before then.
 

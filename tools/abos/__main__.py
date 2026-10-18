@@ -33,6 +33,9 @@ def main(argv: list[str] | None = None) -> int:
     ho = sub.add_parser("handoff", help="handoff bundles").add_subparsers(dest="action", required=True)
     rec = ho.add_parser("receive"); rec.add_argument("file"); rec.add_argument("--product-id", default="PRD-PLATFORM")
 
+    use = sub.add_parser("usage", help="usage ledger from status-line snapshots").add_subparsers(dest="action", required=True)
+    use.add_parser("report", help="rebuild state/usage-ledger and reports/usage per day")
+
     sub.add_parser("board", help="regenerate state/status-board.md")
     sub.add_parser("test", help="run the test suite and store an immutable result record")
     sub.add_parser("schemas", help="check schemas only use supported keywords")
@@ -74,6 +77,11 @@ def main(argv: list[str] | None = None) -> int:
             print(json.dumps(ack, indent=2))
             board.write(ledger)
             return 0 if ack["result"].startswith("ACCEPTED") else 2
+        if args.cmd == "usage":
+            from .usage import report
+            written = report()
+            print("\n".join(str(p.relative_to(REPO_ROOT)) for p in written) or "no snapshots yet")
+            return 0
         if args.cmd == "board":
             print(board.write(ledger))
             return 0

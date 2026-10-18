@@ -34,4 +34,4 @@ max_per_task = 2         # then escalate one tier or mark FAILED
 
 [muse]
 plan = "free; weekly allowance used until 2026-10-22T03:42-04:00 (P1-MUSE-01)"
-policy = "MUST research only, batched into few bundles, until the allowance resets"
+policy = "gate challenger reviews only (DEC-0002), one bundle per gate"

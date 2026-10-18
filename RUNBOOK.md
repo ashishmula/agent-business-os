@@ -11,6 +11,13 @@ All commands run from the repo root on your Mac. Python 3.11+ only; nothing to i
 | Bring in a Muse packet | save it as a `.json` file, then `./abos handoff receive path/to/file.json` |
 | Run the tests | `./abos test` (result saved in `test-results/unit/`) |
 | Scan files for secrets | `./abos secrets <files>` |
+| See token use per task/day | `./abos usage report` → `reports/usage/<date>.md` |
+| Attribute a Claude Code session to a task | type `/rename TASK-0005 short name` in Claude Code |
+| See what the guard blocked | `tail logs/guard.jsonl` |
+
+## Claude Code in this folder (Phase 2b)
+
+Turn it on once with `mkdir -p .claude && cp config/claude-code-settings.json .claude/settings.json` (the template is reviewed and tested in the repo). After that, opening Claude Code in this folder loads it: the bottom status line shows model · context % · 5-hour % · 7-day % · task · Governor level. `ok` means carry on; `ACT` means checkpoint and `/compact`; `BUDGET SOFT` means use a cheaper model. Before compaction a checkpoint lands in `state/checkpoints/`, and a new session starts with a short summary of the ledger.
 
 ## After a crash or a new session
 
