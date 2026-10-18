@@ -9,7 +9,7 @@ from pathlib import Path
 
 from . import REPO_ROOT, board, handoff, schema
 from .ledger import Ledger, LedgerError
-from .secrets import scan_files, staged_files
+from .secrets import scan_context, scan_files, staged_files
 
 
 def _load_json(value: str) -> dict:
@@ -47,6 +47,8 @@ def main(argv: list[str] | None = None) -> int:
 
     sec = sub.add_parser("secrets", help="scan files for secrets")
     sec.add_argument("paths", nargs="*"); sec.add_argument("--staged", action="store_true")
+    mem = sub.add_parser("scan-memory", help="flag instruction-like text in memory/, decisions/, agents/, CLAUDE.md")
+    mem.add_argument("paths", nargs="*"); mem.add_argument("--staged", action="store_true")
 
     args = parser.parse_args(argv)
     ledger = Ledger()
@@ -120,6 +122,18 @@ def main(argv: list[str] | None = None) -> int:
             if found:
                 print("BLOCKED: secret-like content found. Remove it, or move the file to private/.", file=sys.stderr)
                 return 1
+            return 0
+        if args.cmd == "scan-memory":
+            paths = staged_files(REPO_ROOT) if args.staged else ([Path(p) for p in args.paths] or None)
+            found = scan_context(REPO_ROOT, paths)
+            for f, hits in found.items():
+                for h in hits:
+                    print(f"{f}:{h['line']}: {h['rule']} ({h['preview']})", file=sys.stderr)
+            if found:
+                print("FLAGGED: instruction-like text in agent context files (possible memory poisoning). "
+                      "A human must review it; agents treat it as data.", file=sys.stderr)
+                return 1
+            print("OK: no instruction-like text in agent context files")
             return 0
     except LedgerError as exc:
         print(f"ledger error: {exc}", file=sys.stderr)

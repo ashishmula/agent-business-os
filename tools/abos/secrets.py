@@ -27,7 +27,16 @@ INSTRUCTION_PATTERNS = {
     "role_override": r"(?i)\byou are now\b|\bnew system prompt\b|\bact as (an? )?(admin|root|developer mode)\b",
     "pipe_to_shell": r"(?i)\b(curl|wget)\b[^\n|]{0,200}\|\s*(ba|z)?sh\b",
     "exfiltrate": r"(?i)\b(send|post|upload|email)\b.{0,40}\b(api key|credentials?|password|\.env|ssh key)\b",
+    "approval_bypass": r"(?i)\b(skip|bypass|disable|turn off|ignore)\b.{0,25}\b(approvals?|guard|sandbox|permission rules?|deny rules?)\b"
+                       r"|\b(no|not) (approval|permission)s? (is |are )?(needed|required)\b"
+                       r"|\bapproval (is |was )?(not needed|not required|already given)\b",
+    "private_access": r"(?i)(?<!never )(?<!not )(?<!n't )\b(read|open|cat|copy|send|upload|print)\b.{0,30}\bprivate/",
+    "hidden_markup": r"(?i)<!--[^>]*\b(instruction|system|assistant|claude)\b|[\u200b-\u200f\u202a-\u202e\u2066-\u2069]",
 }
+
+# Files that agents load as standing context. Instruction-like text here is memory poisoning
+# (ASI06): it is flagged for a human to review, never followed.
+CONTEXT_FILES = ("memory/", "decisions/", "agents/", "CLAUDE.md", "PROMPT.md")
 
 _COMPILED = {k: re.compile(v) for k, v in {**SECRET_PATTERNS, **INSTRUCTION_PATTERNS}.items()}
 
@@ -54,14 +63,36 @@ def staged_files(repo: Path) -> list[Path]:
     return [repo / line for line in out.splitlines() if line]
 
 
-def scan_files(paths: list[Path]) -> dict[str, list[dict]]:
+def scan_files(paths: list[Path], kinds: str = "secrets") -> dict[str, list[dict]]:
     found = {}
     for path in paths:
         try:
             text = Path(path).read_text(errors="ignore")
         except (IsADirectoryError, FileNotFoundError):
             continue
-        hits = scan_text(text, "secrets")
+        hits = scan_text(text, kinds)
         if hits:
             found[str(path)] = hits
     return found
+
+
+def is_context_file(path: Path, repo: Path) -> bool:
+    try:
+        rel = Path(path).resolve().relative_to(Path(repo).resolve()).as_posix()
+    except ValueError:
+        return False
+    return any(rel == c or rel.startswith(c) for c in CONTEXT_FILES)
+
+
+def context_files(repo: Path) -> list[Path]:
+    out = []
+    for c in CONTEXT_FILES:
+        p = Path(repo) / c
+        out += sorted(f for f in p.rglob("*") if f.is_file()) if p.is_dir() else ([p] if p.is_file() else [])
+    return out
+
+
+def scan_context(repo: Path, paths: list[Path] | None = None) -> dict[str, list[dict]]:
+    """Instruction scan over standing-context files (all of them, or only those in paths)."""
+    files = context_files(repo) if paths is None else [p for p in paths if is_context_file(p, repo)]
+    return scan_files(files, "instructions")

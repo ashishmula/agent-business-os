@@ -1,6 +1,6 @@
 # Status board
 
-Generated 2026-10-18T04:44:29Z by `./abos board` · ledger head `6bb3fdd69d4f` · chain OK · 17 tasks
+Generated 2026-10-18T04:50:53Z by `./abos board` · ledger head `0993151803f5` · chain OK · 17 tasks
 
 _Generated file. Do not edit by hand; change the ledger instead._
 
@@ -12,18 +12,18 @@ _none_
 
 _none_
 
-## In progress (1)
+## In progress (2)
 
 | Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
 |---|---|---|---|---|---|---|---|---|
 | TASK-0005 | MUST | NOT_TESTED | PRD-PLATFORM | G1-phase-2 | builder | Phase 2b Governor: status line script and hooks write the usage ledger and context fill | Ashish installs config/claude-code-settings.json; run one session named TASK-nnnn; ./abos… | 2026-10-18 |
+| TASK-0014 | MUST | REVIEW | PRD-PLATFORM | G2-phase-3 | orchestrator | Adversarial suite: prompt injection via handoffs and web text, memory poisoning, source i… | Muse gate review at end of Phase 3 (in P3 review request) | 2026-10-18 |
 
-## Next (MUST first) (5)
+## Next (MUST first) (4)
 
 | Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
 |---|---|---|---|---|---|---|---|---|
 | TASK-0012 | MUST | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | orchestrator | Developer + 3 testers loop: take one real feature through builder, tester-a, tester-b, te… |  | 2026-10-18 |
-| TASK-0014 | MUST | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | orchestrator | Adversarial suite: prompt injection via handoffs and web text, memory poisoning, source i… |  | 2026-10-18 |
 | TASK-0017 | MUST | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | orchestrator | Phase 3 report: pass/fail/NOT_TESTED counts and coverage gaps |  | 2026-10-18 |
 | TASK-0015 | SHOULD | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | orchestrator | Routing and cost-cap tests: critical never below floor, budget soft/hard behaviour, usage… |  | 2026-10-18 |
 | TASK-0016 | SHOULD | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | researcher | Capability scout pass: re-check skills, MCP servers and repos for Phase 3-4 needs (promis… |  | 2026-10-18 |

@@ -6,4 +6,5 @@ if git diff --cached --name-only | grep -q '^private/'; then
   echo "BLOCKED: files under private/ must never be committed." >&2
   exit 1
 fi
-exec sh "$here/abos" secrets --staged
+sh "$here/abos" secrets --staged || exit 1
+exec sh "$here/abos" scan-memory --staged
