@@ -47,6 +47,10 @@ def main(argv: list[str] | None = None) -> int:
 
     sec = sub.add_parser("secrets", help="scan files for secrets")
     sec.add_argument("paths", nargs="*"); sec.add_argument("--staged", action="store_true")
+    rt = sub.add_parser("route", help="pick tier + subagent for a task type (Model Router, T0)")
+    rt.add_argument("task"); rt.add_argument("--risk"); rt.add_argument("--privacy", default="INTERNAL")
+    rt.add_argument("--budget", choices=["OK", "SOFT", "HARD"]); rt.add_argument("--five", type=float)
+    rt.add_argument("--seven", type=float); rt.add_argument("--failures", type=int, default=0)
     mem = sub.add_parser("scan-memory", help="flag instruction-like text in memory/, decisions/, agents/, CLAUDE.md")
     mem.add_argument("paths", nargs="*"); mem.add_argument("--staged", action="store_true")
 
@@ -123,6 +127,14 @@ def main(argv: list[str] | None = None) -> int:
                 print("BLOCKED: secret-like content found. Remove it, or move the file to private/.", file=sys.stderr)
                 return 1
             return 0
+        if args.cmd == "route":
+            from . import router
+            cfg, budgets = router.load()
+            level = args.budget or router.budget_level(args.five, args.seven, budgets)
+            decision = router.route(args.task, cfg, budgets, risk=args.risk, privacy=args.privacy,
+                                    budget=level, failures=args.failures)
+            print(json.dumps(decision, indent=2))
+            return 0 if decision["action"] == "RUN" else 3
         if args.cmd == "scan-memory":
             paths = staged_files(REPO_ROOT) if args.staged else ([Path(p) for p in args.paths] or None)
             found = scan_context(REPO_ROOT, paths)

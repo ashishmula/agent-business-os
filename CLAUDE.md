@@ -16,6 +16,7 @@ Keep this file short: it loads into every session.
 ## Model routing (automatic; Ashish does not pick models)
 - This folder runs on Sonnet by default. Delegate by task type to the subagent in `config/routing-rules.toml` (`agent` field): quick-helper (Haiku) for lookups, extraction and short summaries; builder/testers (Sonnet) for code; researcher (Sonnet) for research; security-reviewer and critical-analyst (Opus) only for CRITICAL rows.
 - Follow the Governor: at `BUDGET SOFT` delegate down a tier and queue non-urgent work; at `BUDGET HARD` or context `ACT`/`HARD`, checkpoint first. Never go below a rule's `floor`.
+- When unsure, run `./abos route <task_type> --five <5h %> --seven <7d %> [--privacy PRIVATE]`: it returns the tier, subagent and RUN / PAUSE / BLOCKED / ESCALATE_TO_ASHISH with reasons.
 
 ## Always
 - No secrets, keys or tokens in this repo, in reports, or in memory.
