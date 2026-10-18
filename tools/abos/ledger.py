@@ -39,14 +39,35 @@ class Ledger:
     # ---------- reading ----------
 
     def events(self) -> list[dict]:
+        """Parsed events. A torn last line (crash mid-append) is skipped here and reported by verify_chain."""
         if not self.events_path.exists():
             return []
-        with open(self.events_path) as handle:
-            return [json.loads(line) for line in handle if line.strip()]
+        lines = [line for line in self.events_path.read_text().splitlines() if line.strip()]
+        out = []
+        for i, line in enumerate(lines):
+            try:
+                out.append(json.loads(line))
+            except json.JSONDecodeError:
+                if i == len(lines) - 1:
+                    break  # torn tail; verify_chain blocks writes until it is repaired
+                raise LedgerError(f"event line {i + 1} is not valid JSON") from None
+        return out
+
+    def torn_tail(self) -> bool:
+        if not self.events_path.exists():
+            return False
+        lines = [line for line in self.events_path.read_text().splitlines() if line.strip()]
+        try:
+            lines and json.loads(lines[-1])
+        except json.JSONDecodeError:
+            return True
+        return False
 
     def verify_chain(self) -> list[str]:
-        """Detect edited, removed or reordered events."""
+        """Detect edited, removed, reordered or half-written events."""
         problems, prev = [], GENESIS
+        if self.torn_tail():
+            problems.append("torn last line (crash during a write): move it to logs/ by hand, then re-verify")
         for i, event in enumerate(self.events()):
             body = {k: v for k, v in event.items() if k != "hash"}
             if event.get("prev_hash") != prev:
