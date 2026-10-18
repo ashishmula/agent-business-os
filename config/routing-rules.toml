@@ -1,4 +1,4 @@
-# Model Router rules (PROMPT.md 9.3). Lowest tier that has passed the task's golden
+# Model Router rules (PROMPT.md 9.3). `agent` = Claude Code subagent in agents/claude/ (its model is pinned there). Lowest tier that has passed the task's golden
 # tasks; with no benchmark yet, start_tier is a conservative guess.
 
 tiers = ["T0", "T1", "T2", "T3", "T4"]
@@ -15,12 +15,14 @@ PRIVATE = "T0/T1 only unless an APR-* approval record allows a cloud model"
 
 [[rule]]
 task = "deterministic"   # calculations, hashes, dates, state, tests, rule-based dedup
+agent = "none"   # T0: a script, no model
 risk = "any"
 start_tier = "T0"
 floor = "T0"
 
 [[rule]]
 task = "schema_extraction"
+agent = "quick-helper"   # haiku (T2) while T1 is off
 risk = "STANDARD"
 start_tier = "T1"
 floor = "T1"
@@ -28,6 +30,7 @@ review = "T0 schema check + 10% T3 sample"
 
 [[rule]]
 task = "classification_triage"
+agent = "quick-helper"
 risk = "LOW"
 start_tier = "T1"
 floor = "T1"
@@ -35,12 +38,14 @@ review = "T0 schema check"
 
 [[rule]]
 task = "short_summary"
+agent = "quick-helper"
 risk = "LOW"
 start_tier = "T2"
 floor = "T1"
 
 [[rule]]
 task = "routine_code_edit"
+agent = "builder"
 risk = "STANDARD"
 start_tier = "T3"
 floor = "T2"
@@ -48,6 +53,7 @@ review = "Tester A"
 
 [[rule]]
 task = "new_code"
+agent = "builder"
 risk = "STANDARD"
 start_tier = "T3"
 floor = "T3"
@@ -55,6 +61,7 @@ review = "Testers A/B/C"
 
 [[rule]]
 task = "research_synthesis"
+agent = "researcher"
 risk = "STANDARD"
 start_tier = "T3"
 environment = "CLAUDE_CODE"   # DEC-0002: Claude does research; Muse no longer the primary researcher
@@ -63,6 +70,7 @@ review = "Tester B (T3); CRITICAL findings go to the gate review below"
 
 [[rule]]
 task = "gate_challenger_review"   # independent second opinion at CRITICAL gates only (DEC-0002)
+agent = "none"   # Muse, relayed by Ashish
 risk = "CRITICAL"
 start_tier = "T4"
 environment = "DOT_MUSE"
@@ -71,6 +79,7 @@ review = "Ashish relays the bundle by hand; result returns as a handoff packet"
 
 [[rule]]
 task = "architecture_or_security_review"
+agent = "security-reviewer"
 risk = "CRITICAL"
 start_tier = "T4"
 floor = "T4"
@@ -78,6 +87,7 @@ review = "different model or provider"
 
 [[rule]]
 task = "regulatory_quality_matrix"
+agent = "critical-analyst"
 risk = "CRITICAL"
 start_tier = "T4"
 floor = "T4"
@@ -85,6 +95,7 @@ review = "different provider + human professional"
 
 [[rule]]
 task = "financial_model_go_no_go_supplier_shortlist"
+agent = "critical-analyst"
 risk = "CRITICAL"
 start_tier = "T4"
 floor = "T4"

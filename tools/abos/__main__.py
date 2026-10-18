@@ -36,6 +36,7 @@ def main(argv: list[str] | None = None) -> int:
     use = sub.add_parser("usage", help="usage ledger from status-line snapshots").add_subparsers(dest="action", required=True)
     use.add_parser("report", help="rebuild state/usage-ledger and reports/usage per day")
 
+    sub.add_parser("install-claude", help="copy reviewed settings + subagents into .claude/")
     sub.add_parser("board", help="regenerate state/status-board.md")
     sub.add_parser("test", help="run the test suite and store an immutable result record")
     sub.add_parser("schemas", help="check schemas only use supported keywords")
@@ -81,6 +82,12 @@ def main(argv: list[str] | None = None) -> int:
             from .usage import report
             written = report()
             print("\n".join(str(p.relative_to(REPO_ROOT)) for p in written) or "no snapshots yet")
+            return 0
+        if args.cmd == "install-claude":
+            from .install import install
+            changes = install()
+            print("\n".join(changes) or "already up to date")
+            print("Restart Claude Code in this folder to load the changes.")
             return 0
         if args.cmd == "board":
             print(board.write(ledger))

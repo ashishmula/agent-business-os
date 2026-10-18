@@ -17,7 +17,7 @@ All commands run from the repo root on your Mac. Python 3.11+ only; nothing to i
 
 ## Claude Code in this folder (Phase 2b)
 
-Turn it on once with `mkdir -p .claude && cp config/claude-code-settings.json .claude/settings.json` (the template is reviewed and tested in the repo). After that, opening Claude Code in this folder loads it: the bottom status line shows model · context % · 5-hour % · 7-day % · task · Governor level. `ok` means carry on; `ACT` means checkpoint and `/compact`; `BUDGET SOFT` means use a cheaper model. Before compaction a checkpoint lands in `state/checkpoints/`, and a new session starts with a short summary of the ledger.
+Install or update it with `./abos install-claude` (copies the reviewed `config/claude-code-settings.json` and `agents/claude/*.md` into `.claude/`), then restart Claude Code. Models are chosen automatically: Sonnet by default, subagents pinned per `config/routing-rules.toml`. After that, opening Claude Code in this folder loads it: the bottom status line shows model · context % · 5-hour % · 7-day % · task · Governor level. `ok` means carry on; `ACT` means checkpoint and `/compact`; `BUDGET SOFT` means use a cheaper model. Before compaction a checkpoint lands in `state/checkpoints/`, and a new session starts with a short summary of the ledger.
 
 ## After a crash or a new session
 

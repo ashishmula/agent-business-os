@@ -23,7 +23,8 @@ def nudge(event: dict) -> str:
         if value is not None and value >= t[key]["hard_pct"]:
             notes.append(f"{name} plan usage is {value:.0f}%: pause non-critical work and tell Ashish what is paused")
         elif value is not None and value >= t[key]["soft_pct"]:
-            notes.append(f"{name} plan usage is {value:.0f}%: prefer a cheaper tier and queue non-urgent work")
+            notes.append(f"{name} plan usage is {value:.0f}%: delegate eligible work to quick-helper (Haiku) "
+                         "or Sonnet agents, avoid Opus except CRITICAL rows, and queue non-urgent work")
     return ("Governor: " + "; ".join(notes) + ".") if notes else ""
 
 
