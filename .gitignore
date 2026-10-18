@@ -35,3 +35,6 @@ state/loop-breaker/
 
 # graphify code map (rebuild locally with: graphify update .)
 graphify-out/
+
+# CodeGraph local index (machine-specific)
+.codegraph/
