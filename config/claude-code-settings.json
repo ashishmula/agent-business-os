@@ -23,7 +23,22 @@
       "Edit(~/.bashrc)",
       "Edit(~/.bash_profile)",
       "Edit(~/.gitconfig)",
-      "Edit(~/Library/LaunchAgents/**)"
+      "Edit(~/Library/LaunchAgents/**)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.config/gcloud/**)",
+      "Edit(~/.config/gcloud/**)",
+      "Read(~/.netrc)",
+      "Edit(~/.netrc)",
+      "Read(~/.git-credentials)",
+      "Edit(~/.git-credentials)",
+      "Read(~/.docker/**)",
+      "Edit(~/.docker/**)",
+      "Read(~/.npmrc)",
+      "Edit(~/.npmrc)",
+      "Read(~/.pypirc)",
+      "Edit(~/.pypirc)",
+      "Read(~/.kube/**)",
+      "Edit(~/.kube/**)"
     ]
   },
   "sandbox": {
@@ -37,13 +52,28 @@
         "~/.aws",
         "~/.config/gh",
         "~/.gnupg",
-        "~/.ssh"
+        "~/.ssh",
+        "~/.config/gcloud",
+        "~/.netrc",
+        "~/.git-credentials",
+        "~/.docker",
+        "~/.npmrc",
+        "~/.pypirc",
+        "~/.kube"
       ],
       "denyWrite": [
         "~/.ssh",
         "~/.aws",
         "~/.gnupg",
-        "~/Library/LaunchAgents"
+        "~/Library/LaunchAgents",
+        "~/.config/gh",
+        "~/.config/gcloud",
+        "~/.netrc",
+        "~/.git-credentials",
+        "~/.docker",
+        "~/.npmrc",
+        "~/.pypirc",
+        "~/.kube"
       ]
     },
     "network": {

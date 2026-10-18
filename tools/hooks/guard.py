@@ -23,11 +23,12 @@ from pathlib import Path
 ROOT = Path(os.environ.get("CLAUDE_PROJECT_DIR") or Path(__file__).resolve().parents[2])
 LOG = ROOT / "logs" / "guard.jsonl"
 
-SENSITIVE_PATH = re.compile(r"(^|/)(private)(/|$)|(^|/)\.env(\.|$)|\.(pem|key)$|(^|/)\.ssh(/|$)|(^|/)secrets(/|$)")
+SENSITIVE_PATH = re.compile(r"(^|/)(private)(/|$)|(^|/)\.env(\.|$)|\.(pem|key)$|(^|/)\.ssh(/|$)|(^|/)secrets(/|$)"
+                            r"|(^|/)\.config/(gh|gcloud)(/|$)|(^|/)\.(netrc|git-credentials|npmrc|pypirc)$|(^|/)\.(docker|kube)(/|$)")
 
 # (pattern, decision, reason)
 BASH_RULES = [
-    (r"(~|\$HOME|/Users/[^/\s]+)/(\.ssh|\.aws|\.gnupg|Library/LaunchAgents)\b|(~|\$HOME|/Users/[^/\s]+)/\.(zshrc|zprofile|bashrc|bash_profile|gitconfig)\b",
+    (r"(~|\$HOME|/Users/[^/\s]+)/(\.ssh|\.aws|\.gnupg|Library/LaunchAgents|\.config/(gh|gcloud)|\.netrc|\.git-credentials|\.docker|\.npmrc|\.pypirc|\.kube)\b|(~|\$HOME|/Users/[^/\s]+)/\.(zshrc|zprofile|bashrc|bash_profile|gitconfig)\b",
      "deny", "touches SSH/cloud keys, login scripts or launch agents in your home folder"),
     (r"\b(twine|flit|poetry)\s+(upload|publish)\b", "deny", "uploads a package (publishing is an external action)"),
     (r"(^|[\s;&|])(cat|less|more|head|tail|cp|mv|grep|rg|base64|open|scp)\b[^\n]*(\s|/|^)(private/|\.env\b|\.ssh/|[^\s]+\.pem\b)",

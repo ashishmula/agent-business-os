@@ -79,6 +79,19 @@ class Guard(HookTest):
                 self.assertEqual(self.guard("Bash", command=cmd), "deny")
         self.assertEqual(self.guard("Write", file_path=str(Path.home() / ".ssh" / "authorized_keys")), "deny")
 
+    def test_muse_r3b2_cli_credentials_denied(self):
+        home = Path.home()
+        for path in (".config/gh/hosts.yml", ".config/gcloud/credentials.db", ".netrc", ".git-credentials",
+                     ".docker/config.json", ".npmrc", ".pypirc", ".kube/config"):
+            with self.subTest(path):
+                self.assertEqual(self.guard("Read", file_path=str(home / path)), "deny")
+                self.assertEqual(self.guard("Bash", command=f"cat ~/{path}"), "deny")
+        cfg = json.loads((ROOT / "config" / "claude-code-settings.json").read_text())
+        for rule in ("Read(~/.config/gh/**)", "Read(~/.netrc)", "Read(~/.config/gcloud/**)", "Edit(~/.config/gh/**)"):
+            self.assertIn(rule, cfg["permissions"]["deny"])
+        for path in ("~/.config/gh", "~/.netrc", "~/.config/gcloud", "~/.docker"):
+            self.assertIn(path, cfg["sandbox"]["filesystem"]["denyRead"])
+
     def test_external_actions_ask(self):
         for cmd in ("git push origin phase-2", "pip install requests", "gh pr create --fill", "ollama pull llama3"):
             with self.subTest(cmd):

@@ -20,6 +20,17 @@ Taxonomy: OWASP Top 10 for Agentic Applications 2026 [SRC-24]. Principle: **cont
 | ASI09 Human-agent trust exploitation | You approve a confident but wrong claim | Every claim carries evidence IDs or `ESTIMATED/NOT_VERIFIED`; flags block on every deliverable; approval records show exact scope | Review sample of approvals for scope + evidence |
 | ASI10 Rogue agents | Agent drifts from role or exceeds budget | Roles + allowlists per agent; Governor pauses; routing log audit | Agent asked to exceed role → refused + logged |
 
+## 6.1a Standing lessons from review (added 2026-10-18, Muse P2-MUSE-03b/03c)
+
+- **`Write(...)` permission rules never match in Claude Code; only `Edit(...)` rules cover file writes.** So "deny writes"
+  cannot be written as `Write(...)` rules. `Edit(...)` deny rules do stop the Write tool (live: LIVE-20261018052649-r3c,
+  Write to `~/.ssh/authorized_keys` denied "by your permission settings" even with Write pre-allowed), but the sandbox's
+  write scoping (project + temp, `denyWrite` list) is the real control for shell writes, not a backup.
+- **CLI credential files are secrets too:** `~/.config/gh`, `~/.config/gcloud`, `~/.netrc`, `~/.git-credentials`,
+  `~/.docker`, `~/.npmrc`, `~/.pypirc`, `~/.kube` are denied for Read and Edit and in the sandbox (R3B-2). A token read by a
+  tool is visible to the cloud model even if the network blocks it from leaving.
+- **Every guard is pattern-based and evadable;** the sandbox and permission deny rules are the boundary.
+
 ## 6.2 Privacy note you should know before Phase 2
 
 Claude Code sends whatever it reads to Anthropic's cloud models. So "private content stays local" means: **private files (supplier quotes, financials, customer data) must not be opened in a Claude Code session or sent to Dot/Muse without your approval.** They are processed by T0 scripts or T1 Ollama, and Claude only sees the validated, approved output. Proposed private paths: `private/` (git-ignored, never read by cloud agents; enforced by a `PreToolUse` hook that denies Read/Grep under that path).
