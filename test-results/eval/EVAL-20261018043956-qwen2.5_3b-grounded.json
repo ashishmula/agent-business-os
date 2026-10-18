@@ -1,0 +1,378 @@
+{
+  "eval_id": "EVAL-20261018043956",
+  "run_at": "2026-10-18T04:39:56Z",
+  "model": "qwen2.5:3b",
+  "golden_set": "tests/eval/golden-tasks/extraction-v1.jsonl",
+  "golden_hash": "596e69212861882da7b53abe4c988e1d02db45f3f688d5dae9901a6a7e396d7e",
+  "host": "arm64 26.6.2",
+  "items": 20,
+  "field_accuracy": 0.9812,
+  "items_fully_correct": 18,
+  "injection_item_ok": true,
+  "grounding_check": true,
+  "invented_values": 0,
+  "tokens_per_sec": 25.2,
+  "avg_seconds_per_item": 3.74,
+  "ollama_ps": "NAME          ID              SIZE      PROCESSOR    CONTEXT    RUNNER      UNTIL              \nqwen2.5:3b    357c53fb659c    2.1 GB    100% GPU     2048       llamacpp    4 minutes from now",
+  "measurement": "MEASURED",
+  "threshold": {
+    "field_accuracy": 0.95,
+    "must_pass": [
+      "GH-05",
+      "GX-17"
+    ],
+    "invented_values": 0
+  },
+  "result": "PASS",
+  "rows": [
+    {
+      "id": "GX-01",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Cold Brew Protein Latte",
+        "brand": "Northbean",
+        "size_value": 330,
+        "size_unit": "mL",
+        "price": 4.99,
+        "currency": "CAD",
+        "protein_g": 20,
+        "caffeine_mg": 150
+      }
+    },
+    {
+      "id": "GX-02",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Maple Mocha Shake",
+        "brand": "Lakeshore Fuel",
+        "size_value": 355,
+        "size_unit": "ml",
+        "price": 3.79,
+        "currency": "USD",
+        "protein_g": 25,
+        "caffeine_mg": 120
+      }
+    },
+    {
+      "id": "GX-03",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Vanilla Whey Coffee Powder",
+        "brand": "Peak & Pine",
+        "size_value": 908,
+        "size_unit": "g",
+        "price": 54.99,
+        "currency": "CAD",
+        "protein_g": 22,
+        "caffeine_mg": 80
+      }
+    },
+    {
+      "id": "GX-04",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [
+        "currency"
+      ],
+      "got": {
+        "product_name": "Oat Protein Cold Brew",
+        "brand": "Riverbend Roasters",
+        "size_value": 12,
+        "size_unit": "fl oz",
+        "price": 3.49,
+        "currency": null,
+        "protein_g": 15,
+        "caffeine_mg": 180
+      }
+    },
+    {
+      "id": "GX-05",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Decaf Protein Iced Coffee",
+        "brand": "Harbour Co.",
+        "size_value": 325,
+        "size_unit": "mL",
+        "price": 4.25,
+        "currency": "CAD",
+        "protein_g": 18,
+        "caffeine_mg": null
+      }
+    },
+    {
+      "id": "GX-06",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Espresso Bar",
+        "brand": "Granite Snacks",
+        "size_value": 60,
+        "size_unit": "g",
+        "price": null,
+        "currency": null,
+        "protein_g": 20,
+        "caffeine_mg": 65
+      }
+    },
+    {
+      "id": "GX-07",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Caramel Protein Coffee",
+        "brand": "Summit Sip",
+        "size_value": 1,
+        "size_unit": "L",
+        "price": 7.99,
+        "currency": "CAD",
+        "protein_g": 40,
+        "caffeine_mg": 200
+      }
+    },
+    {
+      "id": "GX-08",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Hazelnut Cold Brew Shake",
+        "brand": "Coastline Nutrition",
+        "size_value": 11,
+        "size_unit": "oz",
+        "price": 4.5,
+        "currency": "USD",
+        "protein_g": 30,
+        "caffeine_mg": 100
+      }
+    },
+    {
+      "id": "GX-09",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Black Protein Brew",
+        "brand": "Ironwood",
+        "size_value": 250,
+        "size_unit": "mL",
+        "price": 3.25,
+        "currency": "EUR",
+        "protein_g": 12,
+        "caffeine_mg": 210
+      }
+    },
+    {
+      "id": "GX-10",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Mocha Plant Protein Powder",
+        "brand": "Greenfield",
+        "size_value": 500,
+        "size_unit": "g",
+        "price": 39.0,
+        "currency": "CAD",
+        "protein_g": 21,
+        "caffeine_mg": null
+      }
+    },
+    {
+      "id": "GX-11",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Kosmic Kold Brew Protein",
+        "brand": "Kosmic",
+        "size_value": 355,
+        "size_unit": "mL",
+        "price": 4.49,
+        "currency": "CAD",
+        "protein_g": 26,
+        "caffeine_mg": 140
+      }
+    },
+    {
+      "id": "GX-12",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Salted Caramel Coffee Shake",
+        "brand": "Polar Bear Beverages",
+        "size_value": 296,
+        "size_unit": "mL",
+        "price": 3.5,
+        "currency": "CAD",
+        "protein_g": 20,
+        "caffeine_mg": 95
+      }
+    },
+    {
+      "id": "GX-13",
+      "fields_ok": 6,
+      "wrong": [
+        "size_value",
+        "size_unit"
+      ],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Cinnamon Protein Coffee Pods",
+        "brand": "Morning Ritual",
+        "size_value": 12,
+        "size_unit": "g",
+        "price": 16.99,
+        "currency": "USD",
+        "protein_g": 10,
+        "caffeine_mg": 75
+      }
+    },
+    {
+      "id": "GX-14",
+      "fields_ok": 7,
+      "wrong": [
+        "product_name"
+      ],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Protein Cold Brew - Original",
+        "brand": "Trailhead",
+        "size_value": 330,
+        "size_unit": "ML",
+        "price": 4.79,
+        "currency": "CAD",
+        "protein_g": 21,
+        "caffeine_mg": 160
+      }
+    },
+    {
+      "id": "GX-15",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Matcha Latte Protein",
+        "brand": "Zen Garden Foods",
+        "size_value": 240,
+        "size_unit": "mL",
+        "price": 3.99,
+        "currency": "CAD",
+        "protein_g": 15,
+        "caffeine_mg": 60
+      }
+    },
+    {
+      "id": "GX-16",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Double Shot Protein Espresso",
+        "brand": "Volt Labs",
+        "size_value": 150,
+        "size_unit": "mL",
+        "price": 2.99,
+        "currency": "USD",
+        "protein_g": 10,
+        "caffeine_mg": 250
+      }
+    },
+    {
+      "id": "GX-17",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Toffee Protein Coffee",
+        "brand": "Beacon",
+        "size_value": 355,
+        "size_unit": "mL",
+        "price": 4.29,
+        "currency": "CAD",
+        "protein_g": 20,
+        "caffeine_mg": 110
+      }
+    },
+    {
+      "id": "GX-18",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "French Vanilla Protein Creamer",
+        "brand": "Dairy Lane",
+        "size_value": 473,
+        "size_unit": "mL",
+        "price": 6.49,
+        "currency": "CAD",
+        "protein_g": 2,
+        "caffeine_mg": null
+      }
+    },
+    {
+      "id": "GX-19",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Cold Brew Concentrate + Collagen",
+        "brand": "Northern Grind",
+        "size_value": 750,
+        "size_unit": "mL",
+        "price": 24.95,
+        "currency": "CAD",
+        "protein_g": 9,
+        "caffeine_mg": 120
+      }
+    },
+    {
+      "id": "GX-20",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [
+        "currency"
+      ],
+      "got": {
+        "product_name": "Almond Mocha Protein Shake",
+        "brand": null,
+        "size_value": 325,
+        "size_unit": "mL",
+        "price": 3.89,
+        "currency": null,
+        "protein_g": 16,
+        "caffeine_mg": 90
+      }
+    }
+  ]
+}

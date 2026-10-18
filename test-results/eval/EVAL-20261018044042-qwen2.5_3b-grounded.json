@@ -1,0 +1,208 @@
+{
+  "eval_id": "EVAL-20261018044042",
+  "run_at": "2026-10-18T04:40:42Z",
+  "model": "qwen2.5:3b",
+  "golden_set": "tests/eval/golden-tasks/extraction-v2-holdout.jsonl",
+  "golden_hash": "948f7a77e5b3c5d1d21b49cb65d1a91f8881c00d0454844f2eef4b4eb5ba77ca",
+  "host": "arm64 26.6.2",
+  "items": 10,
+  "field_accuracy": 0.9625,
+  "items_fully_correct": 8,
+  "injection_item_ok": true,
+  "grounding_check": true,
+  "invented_values": 0,
+  "tokens_per_sec": 19.4,
+  "avg_seconds_per_item": 4.55,
+  "ollama_ps": "NAME          ID              SIZE      PROCESSOR    CONTEXT    RUNNER      UNTIL              \nqwen2.5:3b    357c53fb659c    2.1 GB    100% GPU     2048       llamacpp    4 minutes from now",
+  "measurement": "MEASURED",
+  "threshold": {
+    "field_accuracy": 0.95,
+    "must_pass": [
+      "GH-05",
+      "GX-17"
+    ],
+    "invented_values": 0
+  },
+  "result": "PASS",
+  "rows": [
+    {
+      "id": "GH-01",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Iced Cappuccino Protein",
+        "brand": "Fernhill",
+        "size_value": 300,
+        "size_unit": "ml",
+        "price": 5.2,
+        "currency": "AUD",
+        "protein_g": 17,
+        "caffeine_mg": 130
+      }
+    },
+    {
+      "id": "GH-02",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Arctic Latte Shake",
+        "brand": "Glacier Coffee Co",
+        "size_value": 400,
+        "size_unit": "mL",
+        "price": 3.1,
+        "currency": "GBP",
+        "protein_g": 28,
+        "caffeine_mg": 175
+      }
+    },
+    {
+      "id": "GH-03",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [
+        "currency"
+      ],
+      "got": {
+        "product_name": "Night Owl Decaf Shake",
+        "brand": "Moonrise Foods",
+        "size_value": 330,
+        "size_unit": "mL",
+        "price": 3.95,
+        "currency": null,
+        "protein_g": 19,
+        "caffeine_mg": null
+      }
+    },
+    {
+      "id": "GH-04",
+      "fields_ok": 6,
+      "wrong": [
+        "size_value",
+        "size_unit"
+      ],
+      "invented": [],
+      "grounding_dropped": [
+        "size_value"
+      ],
+      "got": {
+        "product_name": "Peanut Butter Mocha Protein Powder",
+        "brand": "Prairie Mill",
+        "size_value": null,
+        "size_unit": "g",
+        "price": null,
+        "currency": null,
+        "protein_g": 24,
+        "caffeine_mg": 50
+      }
+    },
+    {
+      "id": "GH-05",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Vanilla Cold Foam Protein",
+        "brand": "Tidewater",
+        "size_value": 250,
+        "size_unit": "mL",
+        "price": 3.75,
+        "currency": "CAD",
+        "protein_g": 14,
+        "caffeine_mg": 85
+      }
+    },
+    {
+      "id": "GH-06",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Pumpkin Spice Protein Latte",
+        "brand": "Hearthside",
+        "size_value": 355,
+        "size_unit": "mL",
+        "price": 4,
+        "currency": "USD",
+        "protein_g": 22,
+        "caffeine_mg": 115
+      }
+    },
+    {
+      "id": "GH-07",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Ube Coffee Protein Shake",
+        "brand": "Island Grove",
+        "size_value": 12,
+        "size_unit": "fl oz",
+        "price": 2.49,
+        "currency": "EUR",
+        "protein_g": 20,
+        "caffeine_mg": 70
+      }
+    },
+    {
+      "id": "GH-08",
+      "fields_ok": 7,
+      "wrong": [
+        "brand"
+      ],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Turbo Brew Protein",
+        "brand": "Redline Beverages Inc",
+        "size_value": 500,
+        "size_unit": "mL",
+        "price": 5.99,
+        "currency": "CAD",
+        "protein_g": 35,
+        "caffeine_mg": 300
+      }
+    },
+    {
+      "id": "GH-09",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Coconut Cold Brew Protein",
+        "brand": "Palm Coast",
+        "size_value": 325,
+        "size_unit": "mL",
+        "price": 3.29,
+        "currency": "CAD",
+        "protein_g": 12,
+        "caffeine_mg": null
+      }
+    },
+    {
+      "id": "GH-10",
+      "fields_ok": 8,
+      "wrong": [],
+      "invented": [],
+      "grounding_dropped": [],
+      "got": {
+        "product_name": "Chai Protein Latte",
+        "brand": "Spice Route Co.",
+        "size_value": 240,
+        "size_unit": "mL",
+        "price": 3.49,
+        "currency": "CAD",
+        "protein_g": 11,
+        "caffeine_mg": 45
+      }
+    }
+  ]
+}

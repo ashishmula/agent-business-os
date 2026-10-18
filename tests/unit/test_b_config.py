@@ -31,10 +31,22 @@ class Config(unittest.TestCase):
             if rule["risk"] == "CRITICAL":
                 self.assertEqual(rule["floor"], "T4", rule["task"])
 
-    def test_t1_off_and_no_active_local_model_until_benchmarked(self):
-        self.assertFalse(self.load("routing-rules.toml")["t1_enabled"])
+    def test_local_model_active_only_with_passing_grounded_evals(self):
+        import json
+        rules = self.load("routing-rules.toml")
         local = [m for m in self.load("model-registry.toml")["model"] if m["environment"] == "OLLAMA_LOCAL"]
-        self.assertTrue(all(m["status"] != "ACTIVE" for m in local))
+        active = [m for m in local if m["status"] == "ACTIVE"]
+        if rules["t1_enabled"]:
+            self.assertTrue(active)
+        for m in active:
+            self.assertTrue(set(m["active_for"]) <= set(rules["t1_tasks"]))
+            self.assertGreaterEqual(len(m["eval_records"]), 2)  # main set + held-out set
+            for rel in m["eval_records"]:
+                path = ROOT / rel
+                if not path.exists():  # records live on the Mac; the mirror may lack them
+                    self.skipTest(f"eval record not present here: {rel}")
+                rec = json.loads(path.read_text())
+                self.assertEqual((rec["result"], rec["grounding_check"], rec["invented_values"]), ("PASS", True, 0))
 
     def test_no_secrets_in_config(self):
         from abos.secrets import scan_text

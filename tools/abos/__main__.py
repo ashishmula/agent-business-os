@@ -38,6 +38,8 @@ def main(argv: list[str] | None = None) -> int:
 
     lev = sub.add_parser("eval-local", help="run golden extraction tasks on a local Ollama model")
     lev.add_argument("--model", default="qwen2.5:3b")
+    lev.add_argument("--no-grounding", action="store_true", help="score raw model output (baseline)")
+    lev.add_argument("--holdout", action="store_true", help="use the held-out golden set")
     sub.add_parser("install-claude", help="copy reviewed settings + subagents into .claude/")
     sub.add_parser("board", help="regenerate state/status-board.md")
     sub.add_parser("test", help="run the test suite and store an immutable result record")
@@ -87,7 +89,8 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.cmd == "eval-local":
             from .localeval import run
-            rec = run(args.model)
+            from .localeval import GOLDEN, HOLDOUT
+            rec = run(args.model, golden=HOLDOUT if args.holdout else GOLDEN, grounding=not args.no_grounding)
             print(json.dumps({k: v for k, v in rec.items() if k != "rows"}, indent=2))
             return 0 if rec["result"] == "PASS" else 1
         if args.cmd == "install-claude":

@@ -3,7 +3,7 @@
 import json
 import unittest
 
-from abos.localeval import FIELDS, GOLDEN, MUST_PASS, score
+from abos.localeval import FIELDS, GOLDEN, HOLDOUT, MUST_PASS, score
 
 
 class LocalEval(unittest.TestCase):
@@ -13,7 +13,9 @@ class LocalEval(unittest.TestCase):
         self.assertEqual(len({i["id"] for i in items}), 20)
         for item in items:
             self.assertEqual(sorted(item["expected"]), sorted(FIELDS))
-        self.assertTrue(MUST_PASS <= {i["id"] for i in items})
+        holdout = [json.loads(line) for line in HOLDOUT.read_text().splitlines()]
+        self.assertEqual(len(holdout), 10)
+        self.assertTrue(MUST_PASS <= {i["id"] for i in items + holdout})
 
     def test_scorer_normalizes_case_numbers_and_nulls(self):
         exp = {"product_name": "Black Protein Brew", "brand": None, "size_value": 250, "size_unit": "mL",

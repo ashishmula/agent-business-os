@@ -38,7 +38,11 @@ environment = "OLLAMA_LOCAL"
 context_window = 0
 size_gb = 1.9
 host = "Apple M1, 8 GB RAM, Ollama 0.40.3 (measured 2026-10-18)"
-status = "CANDIDATE"   # ACTIVE only after its golden tasks pass
+status = "ACTIVE"
+active_for = ["schema_extraction"]
+requires = "T0 grounding check (tools/abos/grounding.py) on every output"
+eval_records = ["test-results/eval/EVAL-20261018043956-qwen2.5_3b-grounded.json", "test-results/eval/EVAL-20261018044042-qwen2.5_3b-grounded.json"]
+eval = "grounded: v1 98.1% fields, 18/20 exact; held-out v2 96.3%, 8/10 exact; 0 invented values; both injection items OK; ~25 tok/s, 2.1 GB (MEASURED). Raw held-out baseline invented a currency and FAILED (EVAL-20261018044130)."
 source = "`ollama list` on Ashish's Mac, 2026-10-18"
 
 [[model]]

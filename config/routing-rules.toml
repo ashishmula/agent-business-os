@@ -2,7 +2,8 @@
 # tasks; with no benchmark yet, start_tier is a conservative guess.
 
 tiers = ["T0", "T1", "T2", "T3", "T4"]
-t1_enabled = false   # qwen2.5:3b passed extraction golden tasks (EVAL-20261018033333) but invents unstated values; on after the T0 grounding check
+t1_enabled = true    # only for t1_tasks; qwen2.5:3b passed v1 + held-out sets with the T0 grounding check (EVAL-20261018043956, EVAL-20261018044042)
+t1_tasks = ["schema_extraction"]   # every T1 output must pass abos.grounding before use
 t1_fallback = "T0 if a script can do it, else T2; private content with no T1 -> BLOCKED"
 
 [escalation]
@@ -32,7 +33,7 @@ review = "T0 schema check + 10% T3 sample"
 task = "classification_triage"
 agent = "quick-helper"
 risk = "LOW"
-start_tier = "T1"
+start_tier = "T2"   # T1 not benchmarked for classification yet
 floor = "T1"
 review = "T0 schema check"
 
