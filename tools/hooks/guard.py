@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""PreToolUse guard: enforces SECURITY.md rules outside the model (threat model ASI02, ASI03, ASI05).
+"""PreToolUse guard: a guard-rail for SECURITY.md rules (threat model ASI02, ASI03, ASI05).
+
+Not a security boundary: a pattern list can be evaded (Muse P2-MUSE-03). The boundary is the
+OS sandbox and permission deny rules in config/claude-code-settings.json; this hook adds early,
+logged refusals and the ask-before-external-action gate.
 
 deny  -> the tool call is blocked, the reason is shown to Claude
 ask   -> Claude Code asks Ashish before running it (approval gate)
@@ -25,6 +29,10 @@ SENSITIVE_PATH = re.compile(r"(^|/)(private)(/|$)|(^|/)\.env(\.|$)|\.(pem|key)$|
 BASH_RULES = [
     (r"(^|[\s;&|])(cat|less|more|head|tail|cp|mv|grep|rg|base64|open|scp)\b[^\n]*(\s|/|^)(private/|\.env\b|\.ssh/|[^\s]+\.pem\b)",
      "deny", "reads or copies private/, .env, keys or SSH files (cloud model must not see them)"),
+    (r"(^|[\s'\"=(,/])(private/|\.env\b|\.ssh/)",
+     "deny", "mentions private/, .env or .ssh in a shell command (any program could read it; guard-rail, the sandbox is the boundary)"),
+    (r"\b(curl|wget|nc|ncat|scp|rsync|ftp)\b[^\n]*\$\{?[A-Z_]*(KEY|TOKEN|SECRET|PASS)",
+     "deny", "sends an environment secret over the network"),
     (r"\brm\s+(-[a-zA-Z]*r[a-zA-Z]*f|-[a-zA-Z]*f[a-zA-Z]*r)[a-zA-Z]*\s+(/|~|\$HOME|\.\.?)(\s|/?$)",
      "deny", "recursive force delete of a root, home or parent directory"),
     (r"\b(curl|wget)\b[^\n|]*\|\s*(sudo\s+)?(ba|z)?sh\b", "deny", "pipes a downloaded script into a shell"),

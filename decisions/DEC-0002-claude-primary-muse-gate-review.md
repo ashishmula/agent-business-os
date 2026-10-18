@@ -3,16 +3,20 @@ id: DEC-0002
 date: 2026-10-18
 decided_by: Ashish
 status: APPROVED
-evidence: project thread, Ashish "go ahead" to the Claude-vs-Muse recommendation
+evidence: project thread ("go ahead"; then to Muse: "i asked it to do so the research will be in one place"); Muse accepted in its P2-MUSE-03 follow-up
 supersedes_part_of: DEC-0001 (Muse as research environment)
 ---
 
 # Claude does research and building; Muse only reviews at gates
 
-**Decision:** All research synthesis, planning and building run in Claude Code, where the ledger, tests and memory live. Meta Muse is used only as an independent challenger on CRITICAL gate outputs (for example the Phase 1 report, regulatory matrix, financial go/no-go), a handful of times rather than daily.
+**Decision:** All research synthesis, planning and building run in Claude Code. Meta Muse is the independent challenger on CRITICAL gate outputs only (for example the Phase 1 report, the security guard, regulatory matrix, financial go/no-go).
 
-**Why:** every Muse task needs Ashish to relay files by hand, Muse cannot read the repo or ledger, and its free weekly allowance runs out. A second model from a different provider still has value as a reviewer because it catches errors Claude would repeat.
+**Ashish's reason, in his words:** "i asked it to do so the research will be in one place."
 
-**Changes:** `config/routing-rules.toml` (research_synthesis -> CLAUDE_CODE T3; new gate_challenger_review -> DOT_MUSE), `config/model-registry.toml` (Muse allowed_tasks narrowed), `config/budgets.toml` (Muse policy).
+**Why it holds up:** one repo, one research trail, no stale handoffs with Ashish as the courier. This removes Muse's own Risk 1 from P1-MUSE-02. Muse agreed in the P2-MUSE-03 follow-up and confirmed its role as gate challenger.
 
-**Risk on record:** Claude-only research loses the cross-provider check on STANDARD work. Mitigation: Tester B reviews research claims against sources; CRITICAL rows still get the Muse review.
+**Process note:** Claude first recorded this after Ashish's "go ahead" without his reasoning; Muse correctly flagged that it looked like a silent change to the approved design. This record now carries his reasoning.
+
+**Changes:** `config/routing-rules.toml` (research_synthesis -> CLAUDE_CODE T3 researcher agent; gate_challenger_review -> DOT_MUSE), `config/model-registry.toml` (Muse allowed_tasks narrowed), `config/budgets.toml` (Muse policy).
+
+**Risk on record:** Claude-only research loses the cross-provider check on STANDARD work. Mitigation: Tester B checks claims against sources; CRITICAL rows still get the Muse review.

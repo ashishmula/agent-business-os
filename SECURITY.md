@@ -12,17 +12,20 @@ Threat model: [reports/phase-1/06-security-threat-model.md](reports/phase-1/06-s
 | Ledger history can't be silently edited | hash chain; writes refuse to run on a broken chain |
 | A task can't be marked DONE without proof | ledger requires outputs with hashes + evidence; CRITICAL also needs review PASSED |
 
-| Claude Code can't read `private/`, `.env`, keys or SSH files | `.claude/settings.json` (installed from `config/claude-code-settings.json`) PreToolUse hook `tools/hooks/guard.py` denies Read/Edit/Write/Grep/Glob on those paths and shell commands that read or copy them |
-| Dangerous shell commands blocked | same hook denies `sudo`, `rm -rf` of root/home/parent, `curl … \| sh`, force push, `chmod 777`, publishing |
-| External actions need Ashish | same hook makes Claude Code ask before `git push`, package installs, `git clone`, `gh pr/issue` posts, mail, `ollama pull/rm` |
+| Shell commands can't read `private/`, `.env`, `~/.ssh`, `~/.aws` | **OS sandbox** (macOS Seatbelt) in `.claude/settings.json`: `sandbox.filesystem.denyRead`, `allowUnsandboxedCommands: false`, `failIfUnavailable: true` |
+| Shell commands can't send data to unknown hosts | **Sandbox network proxy**: only `allowedDomains` (PyPI) pass; any other host needs Ashish to approve the prompt. Common API-key env vars are removed from sandboxed commands (`sandbox.credentials.envVars`) |
+| File tools can't read `private/` or key files | **Permission deny rules** (`permissions.deny`: `Read(./private/**)` and others) |
+| Early refusals + ask before external actions | `tools/hooks/guard.py` (PreToolUse). A **guard-rail, not a boundary**: a pattern list can be evaded. It denies obvious private/ and secret-exfiltration commands and asks before `git push`, installs, `git clone`, `gh` posts, mail, `ollama pull/rm`. Logs to `logs/guard.jsonl` |
 
-Every deny/ask is logged to `logs/guard.jsonl` (local only). Tests: `tests/unit/test_b_hooks.py`.
+Settings are installed from `config/claude-code-settings.json` with `./abos install-claude`. Tests: `tests/unit/test_b_hooks.py`.
 
-## Limits of the hooks (honest list)
+## Limits (honest list)
 
-- They only cover Claude Code sessions in this folder. Muse, other tools and Ashish's own terminal are not checked.
-- A pattern deny-list can be evaded by an unusual command (for example a script that reads `private/` indirectly). It is a guard rail, not a sandbox; Claude Code's own permission prompts stay on.
-- The hook asks before an external action; it does not yet check that a matching `APR-*` record exists. NOT_TESTED against real prompt-injection attempts.
+- Everything above covers Claude Code sessions in this folder only. Muse, other apps and Ashish's own terminal are not checked.
+- Hooks, the status line and MCP servers run outside the sandbox with full access (Claude Code docs, sandboxing page). Our hooks are local scripts that only read project state.
+- `strictAllowlist` (deny unknown hosts with no prompt) only works from user or managed settings, not a repo file; here an unknown host produces a prompt instead.
+- Whether hooks fire inside subagents: NOT_TESTED. The sandbox and deny rules apply to subagents' tools either way.
+- Independent review: Muse P2-MUSE-03 (2026-10-18) rejected the guard as a boundary; this version answers it and goes back for P2-MUSE-03b.
 
 ## Approvals
 
