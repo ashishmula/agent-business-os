@@ -54,6 +54,10 @@ def main(argv: list[str] | None = None) -> int:
     mem = sub.add_parser("scan-memory", help="flag instruction-like text in memory/, decisions/, agents/, CLAUDE.md")
     mem.add_argument("paths", nargs="*"); mem.add_argument("--staged", action="store_true")
 
+    pr = sub.add_parser("phase-report", help="summarise a gate's tasks for the phase report")
+    pr.add_argument("gate"); pr.add_argument("--write", metavar="PATH", help="write the report to a new file under reports/")
+    pr.add_argument("--force", action="store_true", help="allow --write to overwrite an existing file")
+
     args = parser.parse_args(argv)
     ledger = Ledger()
 
@@ -135,6 +139,9 @@ def main(argv: list[str] | None = None) -> int:
                                     budget=level, failures=args.failures)
             print(json.dumps(decision, indent=2))
             return 0 if decision["action"] == "RUN" else 3
+        if args.cmd == "phase-report":
+            from . import phasereport
+            return phasereport.run_cli(ledger, args.gate, args.write, args.force)
         if args.cmd == "scan-memory":
             paths = staged_files(REPO_ROOT) if args.staged else ([Path(p) for p in args.paths] or None)
             found = scan_context(REPO_ROOT, paths)

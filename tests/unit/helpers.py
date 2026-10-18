@@ -15,6 +15,20 @@ from abos.ledger import Ledger  # noqa: E402
 MUSE_01 = ROOT / "reports" / "phase-1" / "muse" / "P1-MUSE-01.json"
 
 
+def write_test_record(directory, name, test_id, run_at, result="PASS", log_text=None, **extra) -> Path:
+    """Write a trustworthy unit-test record (valid log + sha256, absolute log path) into directory/name.json."""
+    import hashlib
+    directory = Path(directory)
+    log = directory / f"{name}.log"
+    log.write_text(log_text if log_text is not None else f"log for {test_id}\n")
+    rec = {"test_id": test_id, "run_at": run_at, "result": result, "exit_status": 0 if result == "PASS" else 1,
+           "raw_output_path": str(log), "raw_output_hash": hashlib.sha256(log.read_bytes()).hexdigest()}
+    rec.update(extra)
+    path = directory / f"{name}.json"
+    path.write_text(json.dumps(rec))
+    return path
+
+
 def task_spec(**overrides) -> dict:
     spec = {
         "project_id": "COFFEE-PROTEIN-OS",

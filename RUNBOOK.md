@@ -9,6 +9,7 @@ All commands run from the repo root on your Mac. Python 3.11+ only; nothing to i
 | Check nobody edited the ledger | `./abos ledger verify` |
 | Query tasks with SQL | `./abos ledger export-sqlite` then `sqlite3 state/task-ledger/ledger.sqlite "select task_id,status from tasks"` |
 | Bring in a Muse packet | save it as a `.json` file, then `./abos handoff receive path/to/file.json` |
+| Summarise a gate's tasks for the phase report | `./abos phase-report <gate> [--write reports/<file>.md] [--force]` (verifies the ledger first; `--write` only under `reports/`, no overwrite without `--force`) |
 | Run the tests | `./abos test` (result saved in `test-results/unit/`) |
 | Scan files for secrets | `./abos secrets <files>` |
 | See token use per task/day | `./abos usage report` → `reports/usage/<date>.md` |
