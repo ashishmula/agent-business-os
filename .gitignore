@@ -1,0 +1,22 @@
+# Secrets — never commit
+.env
+.env.*
+*.key
+*.pem
+secrets/
+credentials*
+
+# Local runtime noise
+logs/*.log
+*.sqlite-journal
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+.idea/
+.vscode/
+
+# Claude Code local settings (personal)
+.claude/settings.local.json
