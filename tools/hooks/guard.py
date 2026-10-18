@@ -26,6 +26,12 @@ LOG = ROOT / "logs" / "guard.jsonl"
 SENSITIVE_PATH = re.compile(r"(^|/)(private)(/|$)|(^|/)\.env(\.|$)|\.(pem|key)$|(^|/)\.ssh(/|$)|(^|/)secrets(/|$)"
                             r"|(^|/)\.config/(gh|gcloud)(/|$)|(^|/)\.(netrc|git-credentials|npmrc|pypirc)$|(^|/)\.(docker|kube)(/|$)")
 
+# The project's own safety tooling. An injected instruction to "simplify" these files could switch the
+# controls off, and the sandbox allows writes anywhere in the project, so edits need Ashish (P3-MUSE-04).
+SAFETY_PATH = re.compile(r"^(tools/hooks/|\.claude/|\.githooks/|config/claude-code-settings\.json$|tools/abos/secrets\.py$)")
+SAFETY_IN_CMD = r"(tools/hooks/|\.claude/|\.githooks/|config/claude-code-settings\.json|tools/abos/secrets\.py)"
+EDIT_TOOLS = ("Edit", "Write", "MultiEdit", "NotebookEdit")
+
 # (pattern, decision, reason)
 BASH_RULES = [
     (r"(~|\$HOME|/Users/[^/\s]+)/(\.ssh|\.aws|\.gnupg|Library/LaunchAgents|\.config/(gh|gcloud)|\.netrc|\.git-credentials|\.docker|\.npmrc|\.pypirc|\.kube)\b|(~|\$HOME|/Users/[^/\s]+)/\.(zshrc|zprofile|bashrc|bash_profile|gitconfig)\b",
@@ -51,6 +57,8 @@ BASH_RULES = [
     (r"\bgh\s+(pr|issue)\s+(create|comment|merge|close)\b", "ask", "posts to GitHub on Ashish's behalf"),
     (r"\b(mail|sendmail|osascript)\b", "ask", "may send messages or control apps"),
     (r"\bollama\s+(pull|rm|push)\b", "ask", "downloads or deletes local models (disk/RAM on an 8 GB Mac)"),
+    (r"(>>?|\btee\b|\bsed\s+-i|\bperl\s+-[a-z]*i|\b(mv|cp|rm|chmod|truncate|ln)\b|\bgit\s+(checkout|restore)\b)[^\n]*" + SAFETY_IN_CMD,
+     "ask", "changes the project's safety tooling (hooks, settings, pre-commit, secret scanner)"),
 ]
 _COMPILED = [(re.compile(p), d, r) for p, d, r in BASH_RULES]
 
@@ -70,6 +78,8 @@ def decide(event: dict) -> tuple[str, str]:
         value = inp.get(key)
         if value and SENSITIVE_PATH.search(_rel(value)):
             return "deny", f"{tool} on a protected path ({key}); private/, .env, keys and SSH files stay local"
+        if value and tool in EDIT_TOOLS and SAFETY_PATH.search(_rel(value)):
+            return "ask", f"{tool} changes the project's safety tooling ({_rel(value)}); Ashish must approve"
     pattern = inp.get("pattern") or ""
     if tool == "Glob" and SENSITIVE_PATH.search(pattern):
         return "deny", "glob into a protected path"

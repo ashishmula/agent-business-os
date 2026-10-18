@@ -31,6 +31,14 @@ class PromptFiles(unittest.TestCase):
         for heading in re.findall(r"^#{2,3} .+$", v1, flags=re.M):
             self.assertIn(heading, moved, f"v1 heading missing from agents/*.md: {heading}")
 
+    def test_every_v1_line_was_moved_word_for_word(self):
+        # P3-MUSE-04: headings alone don't prove the rules in between survived
+        v1 = (ROOT / "prompt-source" / "PROMPT-v1-full.md").read_text()
+        body = v1[v1.index("\n## 1. "):]
+        moved = "".join(p.read_text() for p in (ROOT / "agents").glob("*.md"))
+        missing = [line for line in body.splitlines() if line.strip() and line not in moved]
+        self.assertEqual(missing, [], f"{len(missing)} v1 lines missing from agents/*.md")
+
     def test_prompt_never_names_the_current_phase(self):
         self.assertNotRegex((ROOT / "PROMPT.md").read_text(), r"\(now\)")
 

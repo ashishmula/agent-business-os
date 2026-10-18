@@ -1,6 +1,6 @@
 # Status board
 
-Generated 2026-10-18T10:43:33Z by `./abos board` · ledger head `d8182e7f5b2e` · chain OK · 24 tasks
+Generated 2026-10-18T10:57:45Z by `./abos board` · ledger head `b7ae92b0b964` · chain OK · 26 tasks
 
 _Generated file. Do not edit by hand; change the ledger instead._
 
@@ -14,20 +14,20 @@ _Generated file. Do not edit by hand; change the ledger instead._
 
 _none_
 
-## In progress (2)
+## In progress (1)
 
 | Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
 |---|---|---|---|---|---|---|---|---|
 | TASK-0005 | MUST | NOT_TESTED | PRD-PLATFORM | G1-phase-2 | builder | Phase 2b Governor: status line script and hooks write the usage ledger and context fill | Ashish: start one claude session, run /rename TASK-0005 governor check, ask one small que… | 2026-10-18 |
-| TASK-0014 | MUST | REVIEW | PRD-PLATFORM | G2-phase-3 | orchestrator | Adversarial suite: prompt injection via handoffs and web text, memory poisoning, source i… | Muse gate review at end of Phase 3 (in P3 review request) | 2026-10-18 |
 
-## Next (MUST first) (1)
+## Next (MUST first) (2)
 
 | Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
 |---|---|---|---|---|---|---|---|---|
+| TASK-0026 | MUST | NOT_STARTED | PRD-PLATFORM | G3-phase-4 | tester-c | Live web-page injection attack: a fetched page carrying planted instructions must be trea… |  | 2026-10-18 |
 | TASK-0022 | SHOULD | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | tester-c | One unconstrained red-team run against the boundary (Muse R3C-6) |  | 2026-10-18 |
 
-## Done (18)
+## Done (20)
 
 | Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
 |---|---|---|---|---|---|---|---|---|
@@ -39,10 +39,12 @@ _none_
 | TASK-0011 | MUST | DONE | PRD-PLATFORM | G2-phase-3 | builder | T0 grounding check for local-model extractions; enable T1 for schema_extraction | Add a T1 extraction runner when Phase 4 needs bulk extraction | 2026-10-18 |
 | TASK-0012 | MUST | DONE | PRD-PLATFORM | G2-phase-3 | orchestrator | Developer + 3 testers loop: take one real feature through builder, tester-a, tester-b, te… | none | 2026-10-18 |
 | TASK-0013 | MUST | DONE | PRD-PLATFORM | G2-phase-3 | orchestrator | Resilience suite: restart/resume from checkpoint, failure recovery, schema errors, duplic… | none | 2026-10-18 |
+| TASK-0014 | MUST | DONE | PRD-PLATFORM | G2-phase-3 | orchestrator | Adversarial suite: prompt injection via handoffs and web text, memory poisoning, source i… | none; live web-page injection continues as TASK-0026 | 2026-10-18 |
 | TASK-0018 | MUST | DONE | PRD-PLATFORM | G2-phase-3 | builder | Phase report command: ./abos phase-report <gate> summarises the gate's tasks for the phas… | none | 2026-10-18 |
 | TASK-0019 | MUST | DONE | PRD-PLATFORM | handoff-intake | orchestrator | Handoff P2-MUSE-03c from DOT_MUSE: Verify the four R3B follow-ups against the 03c config … | none | 2026-10-18 |
 | TASK-0023 | MUST | DONE | PRD-PLATFORM | G2-phase-3 | builder | Tool-loop circuit breaker: PreToolUse hook denies a call repeated as a loop (Governor was… | Ashish: run ./abos install-claude so live sessions load the new hook | 2026-10-18 |
 | TASK-0024 | MUST | DONE | PRD-PLATFORM | G2-phase-3 | builder | Switch to PROMPT v2-slim: split v1 word for word into agents/*.md, fix phase/scope/status… | Ashish: run ./abos install-claude so live sessions load the new hook | 2026-10-18 |
+| TASK-0025 | MUST | DONE | PRD-PLATFORM | handoff-intake | orchestrator | Handoff P3-MUSE-04 from DOT_MUSE: Gate review of TASK-0014 (adversarial suite + memory-po… | none | 2026-10-18 |
 | TASK-0007 | SHOULD | DONE | PRD-PLATFORM | G1-phase-2 | builder | Phase 2c subagent definitions (builder, testers A/B/C, security reviewer) with model and … | none | 2026-10-18 |
 | TASK-0008 | SHOULD | DONE | PRD-PLATFORM | G1-phase-2 | builder | Phase 2c Ollama capacity check and golden tasks for qwen2.5:3b | Phase 3: add T0 grounding check, then enable T1 for schema_extraction | 2026-10-18 |
 | TASK-0010 | SHOULD | DONE | PRD-PLATFORM | G1-phase-2 | orchestrator | Push Phase 2 branch to GitHub | Push again after each Phase 2 commit | 2026-10-18 |

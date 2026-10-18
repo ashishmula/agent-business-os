@@ -1,3 +1,6 @@
 timestamp,session_id,agent,task_id,model,tier,input_tokens,output_tokens,context_fill_pct
 2026-10-18T10:40:34Z,7e0a1d06-586f-44f9-9090-d250de08c38f,main,UNATTRIBUTED,claude-sonnet-5-5,T3,71711,71,7
 2026-10-18T10:40:40Z,7e0a1d06-586f-44f9-9090-d250de08c38f,main,UNATTRIBUTED,claude-sonnet-5-5,T3,3153,633,7
+2026-10-18T10:49:08Z,7e0a1d06-586f-44f9-9090-d250de08c38f,main,TASK-0005,claude-sonnet-5-5,T3,873,0,8
+2026-10-18T10:49:09Z,7e0a1d06-586f-44f9-9090-d250de08c38f,main,TASK-0005,claude-sonnet-5-5,T3,0,169,8
+2026-10-18T10:49:11Z,7e0a1d06-586f-44f9-9090-d250de08c38f,main,TASK-0005,claude-sonnet-5-5,T3,216,0,8

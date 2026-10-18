@@ -19,6 +19,8 @@ Threat model: [reports/phase-1/06-security-threat-model.md](reports/phase-1/06-s
 | File tools can't read `private/` or key files | **Permission deny rules** (`permissions.deny`: `Read(./private/**)` and others) |
 | Planted instructions in memory, decisions, agent files | `./abos scan-memory` flags instruction-like text; pre-commit blocks it and the SessionStart hook warns agents to treat it as data (pattern-based: a reworded line can pass) |
 | Early refusals + ask before external actions | `tools/hooks/guard.py` (PreToolUse). A **guard-rail, not a boundary**: a pattern list can be evaded. It denies obvious private/ and secret-exfiltration commands and asks before `git push`, installs, `git clone`, `gh` posts, mail, `ollama pull/rm`. Logs to `logs/guard.jsonl` |
+| Agents can't quietly switch off the safety tooling | `guard.py` asks Ashish before any Edit/Write or shell write to `tools/hooks/`, `.claude/`, `.githooks/`, `config/claude-code-settings.json` or `tools/abos/secrets.py` (P3-MUSE-04). Same guard-rail limits as above |
+| A stuck agent can't repeat one call forever | `tools/hooks/loop_breaker.py` denies the 4th identical tool call in a row or the 7th in 20. Exact repeats only; fails open by design (a cost guard must never stop work) |
 
 Settings are installed from `config/claude-code-settings.json` with `./abos install-claude`. Tests: `tests/unit/test_b_hooks.py`.
 
@@ -30,6 +32,11 @@ Settings are installed from `config/claude-code-settings.json` with `./abos inst
 - Hooks inside subagents: observed firing (the guard blocked tester-c subagent commands that mentioned `private/` in `test-results/devloop/r1-tester-c.json` and `r2-tester-c-blocked.json`, 2026-10-18). Not a dedicated test.
 - Independent review: Muse P2-MUSE-03 rejected the regex guard as a boundary; P2-MUSE-03b accepted the sandbox design and found R3B-1 (home-folder writes) and R3B-3 (env-var name list, PyPI egress), both fixed and live-tested 2026-10-18 (`test-results/live/`).
 - Permission `Write(...)` rules never match in Claude Code; only `Edit(...)` rules cover file writes (warning seen in a live run).
+- `git commit --no-verify` skips the pre-commit hook, and a lost exec bit made it fail silently once. The SessionStart scan and `./abos scan-memory` (whole repo) are the backstops (P3-MUSE-04).
+- The memory scan is a tripwire, not a wall: P3-MUSE-04 found 10 wordings that passed; they are now caught and tested, but new rewordings will pass. `reports/` is not scanned because it quotes untrusted text on purpose; `evidence/` is.
+- Live injection from a fetched web page is NOT_TESTED (network is off). Phase 4 web reading waits for that attack to exist and pass (TASK-0026).
+- The Governor's budget limits warn and checkpoint (`prompt_nudge.py`, `precompact.py`); nothing forces a pause in code. On the Claude Pro plan the plan itself caps spend. A hard money cap per task is required before any pay-per-use API (`PROMPT.md` Section 2).
+- Loop-breaker history is in the project folder, so an agent could delete it, and a new session starts fresh. Whether subagents share the parent's session id is NOT_VERIFIED.
 
 ## Approvals
 

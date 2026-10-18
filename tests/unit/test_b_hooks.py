@@ -103,6 +103,24 @@ class Guard(HookTest):
                 self.assertEqual(self.guard("Bash", command=cmd), "allow")
         self.assertEqual(self.guard("Edit", file_path=str(self.proj / "tools" / "x.py")), "allow")
 
+    def test_safety_tooling_edits_ask(self):
+        # P3-MUSE-04: an injected "simplify guard.py" must reach Ashish, not run silently
+        for rel in ("tools/hooks/guard.py", ".claude/settings.json", ".githooks/pre-commit",
+                    "config/claude-code-settings.json", "tools/abos/secrets.py"):
+            for tool in ("Edit", "Write"):
+                with self.subTest(rel=rel, tool=tool):
+                    self.assertEqual(self.guard(tool, file_path=str(self.proj / rel)), "ask")
+        for cmd in ("sed -i '' 's/deny/allow/' tools/hooks/guard.py", "echo {} > .claude/settings.json",
+                    "rm .githooks/pre-commit", "git checkout HEAD~3 -- tools/abos/secrets.py",
+                    "cp /tmp/x config/claude-code-settings.json"):
+            with self.subTest(cmd=cmd):
+                self.assertEqual(self.guard("Bash", command=cmd), "ask")
+        for cmd in ("cat tools/hooks/guard.py", "grep -n deny config/claude-code-settings.json", "./abos test"):
+            with self.subTest(cmd=cmd):
+                self.assertEqual(self.guard("Bash", command=cmd), "allow")
+        self.assertEqual(self.guard("Read", file_path=str(self.proj / "tools/hooks/guard.py")), "allow")
+        self.assertEqual(self.guard("Edit", file_path=str(self.proj / "config/budgets.toml")), "allow")
+
     def test_unparseable_input_fails_closed_and_is_logged(self):
         out = self.run_hook("guard.py", None, raw="not json")
         self.assertEqual(json.loads(out.stdout)["hookSpecificOutput"]["permissionDecision"], "deny")

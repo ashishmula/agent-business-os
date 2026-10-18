@@ -3,6 +3,14 @@
 Status: WAITING_FOR_APPROVAL (end of Phase 3, APR-0003). Branch `phase-2-backbone`, commits e79a9a3 → 8336037 and the
 report commit after it. Nothing was merged to main, installed, bought or sent to anyone.
 
+## Muse gate review (P3-MUSE-04, 2026-10-18)
+
+Verdicts: TASK-0014 adversarial suite **PASSED with required changes**; loop breaker **PASSED**; v2-slim prompt **PASSED with fixes**. File: `reports/phase-3/muse/P3-MUSE-04.json`.
+
+Done the same day (suite TEST-20261018105719, 158 tests PASS): edits to the safety tooling now ask Ashish (`guard.py`); the 10 wordings Muse found slipping past the memory scan are caught and tested; `evidence/` is scanned; unquoted keys are caught; `--no-verify` and the other limits are in `SECURITY.md`; `PROMPT.md` splits task status from result words; a test now checks every v1 line was moved word for word; the builder may not edit tests.
+
+Still open: the live web-page injection attack (TASK-0026). Phase 4 web reading waits for it, and it needs Ashish's approval to open the network to one test host. A live run of the self-modification attack is NOT_TESTED (unit tests only).
+
 ## Result in one line
 
 Every Phase 3 test task is done. One CRITICAL task (the adversarial suite) is waiting for Muse's gate review. Tests found
