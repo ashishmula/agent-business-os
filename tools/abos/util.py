@@ -45,8 +45,9 @@ def dumps(obj) -> str:
 
 
 @contextmanager
-def write_lock(lock_path: Path = LOCK_PATH):
+def write_lock(lock_path: Path | None = None):
     """Exclusive lock around every change to shared state (one writer at a time)."""
+    lock_path = lock_path or LOCK_PATH  # resolved at call time so tests and tools can redirect it
     lock_path.parent.mkdir(parents=True, exist_ok=True)
     with open(lock_path, "w") as handle:
         fcntl.flock(handle, fcntl.LOCK_EX)
