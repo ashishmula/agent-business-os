@@ -17,6 +17,7 @@ Threat model: [reports/phase-1/06-security-threat-model.md](reports/phase-1/06-s
 | Secrets in environment variables don't reach commands | `CLAUDE_CODE_SUBPROCESS_ENV_SCRUB=1` strips credentials from all subprocesses (allowlist-style, not a name list); `sandbox.credentials.envVars` kept as a second layer |
 | Agents can't plant SSH keys or login scripts | Sandbox writes only to the project and temp folders (plus `denyWrite` on `~/.ssh`, `~/.aws`, `~/.gnupg`, LaunchAgents); `Edit(...)` deny rules for those paths and `~/.zshrc`, `~/.bashrc`, `~/.gitconfig` cover the file tools |
 | File tools can't read `private/` or key files | **Permission deny rules** (`permissions.deny`: `Read(./private/**)` and others) |
+| Planted instructions in memory, decisions, agent files | `./abos scan-memory` flags instruction-like text; pre-commit blocks it and the SessionStart hook warns agents to treat it as data (pattern-based: a reworded line can pass) |
 | Early refusals + ask before external actions | `tools/hooks/guard.py` (PreToolUse). A **guard-rail, not a boundary**: a pattern list can be evaded. It denies obvious private/ and secret-exfiltration commands and asks before `git push`, installs, `git clone`, `gh` posts, mail, `ollama pull/rm`. Logs to `logs/guard.jsonl` |
 
 Settings are installed from `config/claude-code-settings.json` with `./abos install-claude`. Tests: `tests/unit/test_b_hooks.py`.
@@ -26,7 +27,7 @@ Settings are installed from `config/claude-code-settings.json` with `./abos inst
 - Everything above covers Claude Code sessions in this folder only. Muse, other apps and Ashish's own terminal are not checked.
 - Hooks, the status line and MCP servers run outside the sandbox with full access (Claude Code docs, sandboxing page). Our hooks are local scripts that only read project state.
 - `strictAllowlist` (deny unknown hosts with no prompt) only works from user or managed settings, not a repo file; here an unknown host produces a prompt instead.
-- Whether hooks fire inside subagents: NOT_TESTED. The sandbox and deny rules apply to subagents' tools either way.
+- Hooks inside subagents: observed firing (the guard blocked tester-c subagent commands that mentioned `private/` in `test-results/devloop/r1-tester-c.json` and `r2-tester-c-blocked.json`, 2026-10-18). Not a dedicated test.
 - Independent review: Muse P2-MUSE-03 rejected the regex guard as a boundary; P2-MUSE-03b accepted the sandbox design and found R3B-1 (home-folder writes) and R3B-3 (env-var name list, PyPI egress), both fixed and live-tested 2026-10-18 (`test-results/live/`).
 - Permission `Write(...)` rules never match in Claude Code; only `Edit(...)` rules cover file writes (warning seen in a live run).
 

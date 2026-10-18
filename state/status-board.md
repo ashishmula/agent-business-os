@@ -1,12 +1,14 @@
 # Status board
 
-Generated 2026-10-18T05:17:35Z by `./abos board` · ledger head `5a0546b3a26f` · chain OK · 18 tasks
+Generated 2026-10-18T05:19:46Z by `./abos board` · ledger head `976987642978` · chain OK · 18 tasks
 
 _Generated file. Do not edit by hand; change the ledger instead._
 
-## Waiting for your approval (0)
+## Waiting for your approval (1)
 
-_none_
+| Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
+|---|---|---|---|---|---|---|---|---|
+| TASK-0017 | MUST | WAITING_FOR_APPROVAL | PRD-PLATFORM | G2-phase-3 | orchestrator | Phase 3 report: pass/fail/NOT_TESTED counts and coverage gaps | Ashish relays P3-MUSE-04 after 2026-10-22, reruns ./abos install-claude, decides on Phase… | 2026-10-18 |
 
 ## Blocked (0)
 
@@ -19,11 +21,9 @@ _none_
 | TASK-0005 | MUST | NOT_TESTED | PRD-PLATFORM | G1-phase-2 | builder | Phase 2b Governor: status line script and hooks write the usage ledger and context fill | Ashish installs config/claude-code-settings.json; run one session named TASK-nnnn; ./abos… | 2026-10-18 |
 | TASK-0014 | MUST | REVIEW | PRD-PLATFORM | G2-phase-3 | orchestrator | Adversarial suite: prompt injection via handoffs and web text, memory poisoning, source i… | Muse gate review at end of Phase 3 (in P3 review request) | 2026-10-18 |
 
-## Next (MUST first) (1)
+## Next (MUST first) (0)
 
-| Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
-|---|---|---|---|---|---|---|---|---|
-| TASK-0017 | MUST | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | orchestrator | Phase 3 report: pass/fail/NOT_TESTED counts and coverage gaps |  | 2026-10-18 |
+_none_
 
 ## Done (14)
 
