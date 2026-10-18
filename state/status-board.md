@@ -1,6 +1,6 @@
 # Status board
 
-Generated 2026-10-18T04:36:50Z by `./abos board` · ledger head `068e981b7dfe` · chain OK · 10 tasks
+Generated 2026-10-18T04:42:35Z by `./abos board` · ledger head `6ebf7be6b3ad` · chain OK · 17 tasks
 
 _Generated file. Do not edit by hand; change the ledger instead._
 
@@ -18,11 +18,18 @@ _none_
 |---|---|---|---|---|---|---|---|---|
 | TASK-0005 | MUST | NOT_TESTED | PRD-PLATFORM | G1-phase-2 | builder | Phase 2b Governor: status line script and hooks write the usage ledger and context fill | Ashish installs config/claude-code-settings.json; run one session named TASK-nnnn; ./abos… | 2026-10-18 |
 
-## Next (MUST first) (0)
+## Next (MUST first) (6)
 
-_none_
+| Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
+|---|---|---|---|---|---|---|---|---|
+| TASK-0012 | MUST | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | orchestrator | Developer + 3 testers loop: take one real feature through builder, tester-a, tester-b, te… |  | 2026-10-18 |
+| TASK-0013 | MUST | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | orchestrator | Resilience suite: restart/resume from checkpoint, failure recovery, schema errors, duplic… |  | 2026-10-18 |
+| TASK-0014 | MUST | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | orchestrator | Adversarial suite: prompt injection via handoffs and web text, memory poisoning, source i… |  | 2026-10-18 |
+| TASK-0017 | MUST | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | orchestrator | Phase 3 report: pass/fail/NOT_TESTED counts and coverage gaps |  | 2026-10-18 |
+| TASK-0015 | SHOULD | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | orchestrator | Routing and cost-cap tests: critical never below floor, budget soft/hard behaviour, usage… |  | 2026-10-18 |
+| TASK-0016 | SHOULD | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | researcher | Capability scout pass: re-check skills, MCP servers and repos for Phase 3-4 needs (promis… |  | 2026-10-18 |
 
-## Done (8)
+## Done (9)
 
 | Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
 |---|---|---|---|---|---|---|---|---|
@@ -31,6 +38,7 @@ _none_
 | TASK-0003 | MUST | DONE | PRD-PLATFORM | G0-phase-1-approval | orchestrator | Phase 1 research and architecture report | none | 2026-10-18 |
 | TASK-0004 | MUST | DONE | PRD-PLATFORM | G1-phase-2 | builder | Phase 2a backbone: ledger, pre-flight, handoff intake, status board, schemas, config, sec… | Start Phase 2b | 2026-10-18 |
 | TASK-0006 | MUST | DONE | PRD-PLATFORM | G1-phase-2 | builder | Phase 2b security hooks: PreToolUse deny-list, block reads of private/, approval check fo… | Phase 3 adversarial suite re-runs these checks | 2026-10-18 |
+| TASK-0011 | MUST | DONE | PRD-PLATFORM | G2-phase-3 | builder | T0 grounding check for local-model extractions; enable T1 for schema_extraction | Add a T1 extraction runner when Phase 4 needs bulk extraction | 2026-10-18 |
 | TASK-0007 | SHOULD | DONE | PRD-PLATFORM | G1-phase-2 | builder | Phase 2c subagent definitions (builder, testers A/B/C, security reviewer) with model and … | none | 2026-10-18 |
 | TASK-0008 | SHOULD | DONE | PRD-PLATFORM | G1-phase-2 | builder | Phase 2c Ollama capacity check and golden tasks for qwen2.5:3b | Phase 3: add T0 grounding check, then enable T1 for schema_extraction | 2026-10-18 |
 | TASK-0010 | SHOULD | DONE | PRD-PLATFORM | G1-phase-2 | orchestrator | Push Phase 2 branch to GitHub | Push again after each Phase 2 commit | 2026-10-18 |
