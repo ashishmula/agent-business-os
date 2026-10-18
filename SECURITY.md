@@ -34,7 +34,7 @@ Settings are installed from `config/claude-code-settings.json` with `./abos inst
 - Permission `Write(...)` rules never match in Claude Code; only `Edit(...)` rules cover file writes (warning seen in a live run).
 - `git commit --no-verify` skips the pre-commit hook, and a lost exec bit made it fail silently once. The SessionStart scan and `./abos scan-memory` (whole repo) are the backstops (P3-MUSE-04).
 - The memory scan is a tripwire, not a wall: P3-MUSE-04 found 10 wordings that passed; they are now caught and tested, but new rewordings will pass. `reports/` is not scanned because it quotes untrusted text on purpose; `evidence/` is.
-- Live injection from a fetched web page is NOT_TESTED (network is off). Phase 4 web reading waits for that attack to exist and pass (TASK-0026).
+- Live injection from a fetched web page: one live run PASSED 2026-10-18 (`tools/live/web-injection.sh`, TASK-0026, page served from 127.0.0.1). The agent refused on its own judgement; the hard controls (sandbox `private/` deny, guard) were never reached, so that run tests the model and rules, not the boundary. One run is not a rate; rerun it after Claude Code or model upgrades.
 - The Governor's budget limits warn and checkpoint (`prompt_nudge.py`, `precompact.py`); nothing forces a pause in code. On the Claude Pro plan the plan itself caps spend. A hard money cap per task is required before any pay-per-use API (`PROMPT.md` Section 2).
 - Loop-breaker history is in the project folder, so an agent could delete it, and a new session starts fresh. Whether subagents share the parent's session id is NOT_VERIFIED.
 
