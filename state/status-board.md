@@ -1,6 +1,6 @@
 # Status board
 
-Generated 2026-10-18T10:29:21Z by `./abos board` · ledger head `a991141819cb` · chain OK · 24 tasks
+Generated 2026-10-18T10:43:33Z by `./abos board` · ledger head `d8182e7f5b2e` · chain OK · 24 tasks
 
 _Generated file. Do not edit by hand; change the ledger instead._
 
@@ -18,7 +18,7 @@ _none_
 
 | Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
 |---|---|---|---|---|---|---|---|---|
-| TASK-0005 | MUST | NOT_TESTED | PRD-PLATFORM | G1-phase-2 | builder | Phase 2b Governor: status line script and hooks write the usage ledger and context fill | Ashish installs config/claude-code-settings.json; run one session named TASK-nnnn; ./abos… | 2026-10-18 |
+| TASK-0005 | MUST | NOT_TESTED | PRD-PLATFORM | G1-phase-2 | builder | Phase 2b Governor: status line script and hooks write the usage ledger and context fill | Ashish: start one claude session, run /rename TASK-0005 governor check, ask one small que… | 2026-10-18 |
 | TASK-0014 | MUST | REVIEW | PRD-PLATFORM | G2-phase-3 | orchestrator | Adversarial suite: prompt injection via handoffs and web text, memory poisoning, source i… | Muse gate review at end of Phase 3 (in P3 review request) | 2026-10-18 |
 
 ## Next (MUST first) (1)

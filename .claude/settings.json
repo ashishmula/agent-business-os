@@ -1,17 +1,44 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "model": "sonnet",
+  "env": {
+    "CLAUDE_CODE_SUBPROCESS_ENV_SCRUB": "1"
+  },
   "permissions": {
     "deny": [
       "Read(./private/**)",
       "Edit(./private/**)",
-      "Write(./private/**)",
       "Read(./.env)",
       "Read(./.env.*)",
       "Read(**/*.pem)",
       "Read(**/*.key)",
       "Read(~/.ssh/**)",
-      "Read(~/.aws/**)"
+      "Read(~/.aws/**)",
+      "Edit(~/.ssh/**)",
+      "Edit(~/.aws/**)",
+      "Edit(~/.gnupg/**)",
+      "Edit(~/.config/gh/**)",
+      "Edit(~/.zshrc)",
+      "Edit(~/.zprofile)",
+      "Edit(~/.bashrc)",
+      "Edit(~/.bash_profile)",
+      "Edit(~/.gitconfig)",
+      "Edit(~/Library/LaunchAgents/**)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.config/gcloud/**)",
+      "Edit(~/.config/gcloud/**)",
+      "Read(~/.netrc)",
+      "Edit(~/.netrc)",
+      "Read(~/.git-credentials)",
+      "Edit(~/.git-credentials)",
+      "Read(~/.docker/**)",
+      "Edit(~/.docker/**)",
+      "Read(~/.npmrc)",
+      "Edit(~/.npmrc)",
+      "Read(~/.pypirc)",
+      "Edit(~/.pypirc)",
+      "Read(~/.kube/**)",
+      "Edit(~/.kube/**)"
     ]
   },
   "sandbox": {
@@ -20,18 +47,37 @@
     "allowUnsandboxedCommands": false,
     "filesystem": {
       "denyRead": [
-        "./private",
         "./.env",
+        "./private",
+        "~/.aws",
+        "~/.config/gh",
+        "~/.gnupg",
+        "~/.ssh",
+        "~/.config/gcloud",
+        "~/.netrc",
+        "~/.git-credentials",
+        "~/.docker",
+        "~/.npmrc",
+        "~/.pypirc",
+        "~/.kube"
+      ],
+      "denyWrite": [
         "~/.ssh",
         "~/.aws",
-        "~/.config/gh"
+        "~/.gnupg",
+        "~/Library/LaunchAgents",
+        "~/.config/gh",
+        "~/.config/gcloud",
+        "~/.netrc",
+        "~/.git-credentials",
+        "~/.docker",
+        "~/.npmrc",
+        "~/.pypirc",
+        "~/.kube"
       ]
     },
     "network": {
-      "allowedDomains": [
-        "pypi.org",
-        "files.pythonhosted.org"
-      ]
+      "allowedDomains": []
     },
     "credentials": {
       "envVars": [
@@ -76,6 +122,16 @@
             "type": "command",
             "command": "python3 \"${CLAUDE_PROJECT_DIR}/tools/hooks/guard.py\"",
             "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR}/tools/hooks/loop_breaker.py\"",
+            "timeout": 5
           }
         ]
       }

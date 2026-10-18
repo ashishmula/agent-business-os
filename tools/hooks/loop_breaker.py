@@ -25,7 +25,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(os.environ.get("CLAUDE_PROJECT_DIR") or Path(__file__).resolve().parents[2])
-SESSIONS = ROOT / "state" / "context-sessions"
+HISTORY = ROOT / "state" / "loop-breaker"  # not context-sessions: the usage report reads every *.jsonl there
 LOG = ROOT / "logs" / "loop-breaker.jsonl"
 DEFAULTS = {"max_identical_in_a_row": 3, "max_same_in_window": 6, "window": 20}
 
@@ -45,7 +45,7 @@ def fingerprint(event: dict) -> str:
 
 
 def history_file(session_id: str) -> Path:
-    return SESSIONS / f"{re.sub(r'[^A-Za-z0-9_-]', '_', session_id)}.calls.jsonl"
+    return HISTORY / f"{re.sub(r'[^A-Za-z0-9_-]', '_', session_id)}.jsonl"
 
 
 def load(path: Path) -> list[str]:

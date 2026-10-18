@@ -50,10 +50,16 @@ class LoopBreaker(HookTest):
     def test_bad_input_and_corrupt_history_fail_open(self):
         out = self.run_hook("loop_breaker.py", None, raw="not json")
         self.assertEqual((out.returncode, out.stdout), (0, ""))
-        hist = self.proj / "state" / "context-sessions" / "s1.calls.jsonl"
+        hist = self.proj / "state" / "loop-breaker" / "s1.jsonl"
         hist.parent.mkdir(parents=True)
         hist.write_text("{broken\n")
         self.assertEqual(self.call("ls"), "allow")
+
+    def test_history_stays_out_of_the_usage_snapshots(self):
+        # regression: history in state/context-sessions crashed `./abos usage report` (KeyError 'ts')
+        self.call("ls")
+        self.assertFalse(list((self.proj / "state").glob("context-sessions/*")))
+        self.assertTrue((self.proj / "state" / "loop-breaker" / "s1.jsonl").exists())
 
 
 if __name__ == "__main__":

@@ -31,6 +31,7 @@ state/task-ledger/ledger.sqlite
 
 # Per-session Governor snapshots (may hold session names); reports/usage keeps the summaries
 state/context-sessions/*.jsonl
+state/loop-breaker/
 
 # graphify code map (rebuild locally with: graphify update .)
 graphify-out/
