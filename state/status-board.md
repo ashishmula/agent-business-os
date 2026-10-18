@@ -1,6 +1,6 @@
 # Status board
 
-Generated 2026-10-18T10:04:28Z by `./abos board` · ledger head `90b5ca2895cd` · chain OK · 22 tasks
+Generated 2026-10-18T10:29:21Z by `./abos board` · ledger head `a991141819cb` · chain OK · 24 tasks
 
 _Generated file. Do not edit by hand; change the ledger instead._
 
@@ -27,7 +27,7 @@ _none_
 |---|---|---|---|---|---|---|---|---|
 | TASK-0022 | SHOULD | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | tester-c | One unconstrained red-team run against the boundary (Muse R3C-6) |  | 2026-10-18 |
 
-## Done (16)
+## Done (18)
 
 | Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
 |---|---|---|---|---|---|---|---|---|
@@ -41,6 +41,8 @@ _none_
 | TASK-0013 | MUST | DONE | PRD-PLATFORM | G2-phase-3 | orchestrator | Resilience suite: restart/resume from checkpoint, failure recovery, schema errors, duplic… | none | 2026-10-18 |
 | TASK-0018 | MUST | DONE | PRD-PLATFORM | G2-phase-3 | builder | Phase report command: ./abos phase-report <gate> summarises the gate's tasks for the phas… | none | 2026-10-18 |
 | TASK-0019 | MUST | DONE | PRD-PLATFORM | handoff-intake | orchestrator | Handoff P2-MUSE-03c from DOT_MUSE: Verify the four R3B follow-ups against the 03c config … | none | 2026-10-18 |
+| TASK-0023 | MUST | DONE | PRD-PLATFORM | G2-phase-3 | builder | Tool-loop circuit breaker: PreToolUse hook denies a call repeated as a loop (Governor was… | Ashish: run ./abos install-claude so live sessions load the new hook | 2026-10-18 |
+| TASK-0024 | MUST | DONE | PRD-PLATFORM | G2-phase-3 | builder | Switch to PROMPT v2-slim: split v1 word for word into agents/*.md, fix phase/scope/status… | Ashish: run ./abos install-claude so live sessions load the new hook | 2026-10-18 |
 | TASK-0007 | SHOULD | DONE | PRD-PLATFORM | G1-phase-2 | builder | Phase 2c subagent definitions (builder, testers A/B/C, security reviewer) with model and … | none | 2026-10-18 |
 | TASK-0008 | SHOULD | DONE | PRD-PLATFORM | G1-phase-2 | builder | Phase 2c Ollama capacity check and golden tasks for qwen2.5:3b | Phase 3: add T0 grounding check, then enable T1 for schema_extraction | 2026-10-18 |
 | TASK-0010 | SHOULD | DONE | PRD-PLATFORM | G1-phase-2 | orchestrator | Push Phase 2 branch to GitHub | Push again after each Phase 2 commit | 2026-10-18 |

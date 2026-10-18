@@ -13,6 +13,8 @@ from .secrets import scan_context, scan_files, staged_files
 
 
 def _load_json(value: str) -> dict:
+    if value.lstrip().startswith("{"):  # inline JSON; long strings would crash Path.exists()
+        return json.loads(value)
     path = Path(value)
     return json.loads(path.read_text() if path.exists() else value)
 

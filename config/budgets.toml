@@ -35,3 +35,8 @@ max_per_task = 2         # then escalate one tier or mark FAILED
 [muse]
 plan = "free; weekly allowance used until 2026-10-22T03:42-04:00 (P1-MUSE-01)"
 policy = "gate challenger reviews only (DEC-0002), one bundle per gate"
+
+[loop_breaker]               # tools/hooks/loop_breaker.py: deny a tool call that repeats like a loop
+max_identical_in_a_row = 3   # the 4th identical call in a row is blocked
+max_same_in_window = 6       # the 7th identical call within the last `window` calls is blocked
+window = 20
