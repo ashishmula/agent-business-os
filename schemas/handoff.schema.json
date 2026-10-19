@@ -49,6 +49,7 @@
     "from_environment": {
       "enum": [
         "DOT_MUSE",
+        "GEMINI_APP",
         "CLAUDE_CODE",
         "OLLAMA_LOCAL",
         "HUMAN"
@@ -60,6 +61,7 @@
     "to_environment": {
       "enum": [
         "DOT_MUSE",
+        "GEMINI_APP",
         "CLAUDE_CODE",
         "OLLAMA_LOCAL",
         "HUMAN"

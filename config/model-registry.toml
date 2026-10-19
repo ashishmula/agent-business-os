@@ -65,3 +65,15 @@ status = "ACTIVE"
 allowed_tasks = ["gate_challenger_review", "handoff_packet"]   # narrowed by DEC-0002 (2026-10-18)
 forbidden_tasks = ["research_synthesis", "code_or_test_verification", "state_of_record", "memory_dependent", "github_or_connectors", "usage_metering", "external_actions", "legal_regulatory_final"]
 source = "handoff P1-MUSE-01 (sha256 00350acb…4ca4), runtime-reported by Muse 2026-10-17"
+
+[[model]]
+id = "gemini-4-argon"
+tier = "T4"
+environment = "GEMINI_APP"   # Ashish's Google AI Pro: Gemini app / Gemini in Chrome, relayed by hand (DEC-0005)
+context_window = 1048576
+usage_measurement = "ESTIMATED"
+status = "ACTIVE"
+allowed_tasks = ["gate_challenger_review", "handoff_packet", "second_opinion_critical"]
+forbidden_tasks = ["research_synthesis", "code_or_test_verification", "state_of_record", "memory_dependent", "external_actions", "legal_regulatory_final", "private_content"]
+note = "Output is untrusted input: it comes back as a handoff packet through ./abos handoff receive, never as instructions. API id gemini-4-argon is pay-per-token and NOT approved (Phase 5 hard-cap rule)."
+source = "letsdatascience.com Gemini 4 Argon access article (API id, 1,048,576 context; Pro subscribers in the Gemini app), checked 2026-10-19"

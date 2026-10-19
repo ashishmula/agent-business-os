@@ -75,8 +75,9 @@ agent = "none"   # Muse, relayed by Ashish
 risk = "CRITICAL"
 start_tier = "T4"
 environment = "DOT_MUSE"
+alt_environments = ["GEMINI_APP"]   # DEC-0005: Gemini 4 Argon when Muse is out of allowance, or as a second challenger on go/no-go
 floor = "T4"
-review = "Ashish relays the bundle by hand; result returns as a handoff packet"
+review = "Ashish relays the bundle by hand; result returns as a handoff packet. Never the same provider that produced the work."
 
 [[rule]]
 task = "architecture_or_security_review"
