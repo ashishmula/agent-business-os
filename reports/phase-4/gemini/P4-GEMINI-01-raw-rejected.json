@@ -1,0 +1,75 @@
+{
+  "handoff_schema_version": "1.0",
+  "project_id": "COFFEE-PROTEIN-OS",
+  "task_id": "P4-GEMINI-01",
+  "parent_task_ids": [],
+  "from_agent": "Gemini 4 Argon",
+  "from_environment": "GEMINI_APP",
+  "to_agent": "Ashish",
+  "to_environment": "HUMAN",
+  "objective": "Challenger review of the Phase 4 go/no-go dossier",
+  "status": "DONE",
+  "context_brief": "R10's core arithmetic holds up, but the 'GO WITH CONDITIONS' verdicts for both the Best Plan and the Budget Plan are overly generous given a zero-audience founder and a dead 90-day event channel. The Best Plan is a clear NO-GO today due to extreme personal debt risk and nonexistent small-run retort co-packing in Canada. Only the CAD 2,500–4,100 Micro-test is justified right now.",
+  "inputs": [
+    {
+      "artifact_id": "R10-decision-dossier",
+      "path_or_uri": "reports/phase-4/R10-decision-dossier.md",
+      "version_or_hash": "sha256:2c20ff559445"
+    }
+  ],
+  "findings_or_changes": [
+    "DISAGREE - Q1 (Verdicts & Arithmetic): Unit cost and gross outflow math in R10 §2.3–2.4 are algebraically exact (e.g., 5k low can = (1.10 + 0.80 + 0.40)*1.4247 + 0.15 + 0.15 = CAD 3.5768 -> 3.58; Gross low = 5,200 + 55,850 + 8,378 = 69,428 -> ~69,400; Micro-test low = 825 + 500 + 35 + 100 + 400 + 300 + 300 = 2,460). However, peak cash logic in §2.4 is flawed: subtracting CAD 5,000–15,000 in powder inflows to get a CAD 60k–135k peak fails because 12-month operating outflows (Lines G, H, I) occur after the pre-launch co-packer deposit trough, and deducting CAD 15,000 in pre-peak revenue contradicts R8's cited 6-month base revenue of CAD 12,421. Furthermore, in §3.2, cutting post-launch marketing (paid social -250, creators -300, 2 events -275) to artificially force the Budget Plan peak from CAD 13,975 down to CAD 12,950 invalidates the revenue inflows and Month 11–12 break-even that depend on those exact customer acquisition channels. R8's raw cash-flow tables are NOT_VERIFIED because R8 is not attached - R10 §2.3, §2.4, §3.2, §4.",
+    "DISAGREE - Q1 (Verdict Logic): Calling the Best Plan 'GO WITH CONDITIONS, staged' when it requires 5–10x the founder's total budget in personal-guarantee debt, has no identified Canadian co-packer, and does not pay back within 12 months is polite hedging. It is a hard NO-GO until the powder business is self-funding - R10 §1, §2.4, §5.",
+    "AGREE - Q2 (3 Weakest Assumptions That Flip the Verdict): (1) Co-packer MOQ & Pricing: Assuming a retort/aseptic co-packer will run 5,000–10,000 cans of a custom low-acid plant-protein beverage for <=CAD 4.00/can (typical minimums are 25,000–100,000+ cans; missing this blows peak cash past CAD 150k). (2) Channel Density & Velocity: Assuming 30 target events/year selling 150–250 cans each at CAD 5.50 when only 1 event exists in the next 90 days and The Coffee Party has 0 listed. (3) Format Transferability & Repeat Rate: Assuming event-goers who want a cold grab-and-go drink at a rave/run club will buy a CAD 44 15-serving home powder pouch and repeat at >=25% while marketing spend is simultaneously cut in §3.2 - R10 §2.3, §2.4, §2.7, §3.2.",
+    "PARTIAL - Q3 (Demand Evidence & Cheaper Test): R10 rightly admits demand is the weakest link (zero audience, 1 evening event in 90 days), which makes committing to the 60-pouch US import panel in §3.1 premature. However, even the §3.3 Micro-test (CAD 2,460–4,100) overspends on upfront setup before proving anyone cares. Cheaper test to run first (CAD 300–600, 2 weeks): Build a techno-flyer landing page and run geo-targeted Instagram/TikTok ads to Toronto run-club and electronic-music followers testing 'Can vs. Pouch' and price points (measuring real CAC and waitlist/checkout intent), coupled with guerilla parking-lot cooler sampling of commercial benchmarks (e.g., Brüst or OWYN over ice) at 2 free public run clubs before paying booth fees, commercial insurance, and mock-up print runs - R10 §2.7, §3.1, §3.3.",
+    "PARTIAL - Q4 (Canada Regulatory & Food Safety): R10/R5 correctly catch the supplemented food boundary (coffee-only caffeine vs. added caffeine), protein quality (PDCAAS / source-of-protein thresholds), FOP sugar limits, and Toronto Public Health booth rules. Missing or flawed items: (1) Under SFCR, if Ashish uses a US co-packer (Berner, Nations Brewing) or imports 60 US pouches for public sampling, HE must hold an SFC Licence to Import with a written Preventive Control Plan (PCP)—he cannot piggyback on a co-packer's licence across the border (ask counsel). (2) Preparing 2 oz shots for the Micro-test (§3.3) cannot legally be done in a home kitchen; Toronto Public Health requires preparation in an inspected commercial kitchen or on-site from sealed commercial containers (ask counsel / TPH). (3) The §2.6 'Keep Refrigerated' low-acid canned pilot is a severe *Clostridium botulinum* hazard: hermetically sealing a low-acid (pH > 4.6), high-water-activity protein drink in an anaerobic metal can without commercial sterility (retort/aseptic) is rejected by process authorities because consumers routinely leave cans unrefrigerated (ask process authority / counsel). (4) Exact SFCR caffeine labeling rules for high-caffeine coffee-only beverages and AGCO event licensing nuances should be marked 'ask counsel' - R10 §2.1, §2.6, §3.1, §3.3, §8.",
+    "PARTIAL - Q5 (Canned Plant-Protein Drink Cost, Timeline & Technical Risk): R10 accurately flags protein sedimentation, gelling, chalkiness, and unverified nitro-widget foaming under retort heat, but UNDER-STATES cost and timeline. Retort thermal-process validation, heat-penetration trials, and multi-round sensory masking for bitter pea protein + acidic coffee routinely cost CAD 15,000–35,000+ (vs. R10's CAD 11,000–28,000 in B1+B2). None of the shortlisted Canadian manufacturers fit a 5k–10k can run (Ya YA is high-speed PET bottles, Cardiff is Tetra Pak cartons, Beverage Factory lacks low-acid retort). Using a US retort co-packer adds freight, brokerage, tariffs, and currency buffer not covered by CAD 0.15–0.35/can. A realistic timeline to first event can is 12–18 months, meaning Summer 2027 (Months 8–11) is almost certainly missed - R10 §2.2, §2.3, §2.4, §2.5, §2.7.",
+    "AGREE - Q6 (What an Investor or Lender Would Ask That Is Missing): (1) Customer Acquisition Cost (CAC) vs. LTV: How can online and event sales hit targets with only CAD 250 in paid social and CAD 0 creator budget (§3.2)? (2) Working Capital & Reorder Trap: If Run 1 (500 pouches) takes 6+ months to sell, how do you fund the 50% deposit on Run 2 before Run 1 cash is collected, given 8–12 week manufacturing lead times? (3) CSBFP & BDC Ineligibility: CSBFP explicitly excludes inventory and R&D/marketing working capital, and Futurpreneur/BDC require personal credit, personal guarantees, and debt-service coverage—how does Ashish service ~CAD 1,800/month in loan payments if the product flops? (4) Channel Economics & Exclusivity: What happens when run clubs or venues demand $1,000+ sponsorship fees instead of $150 table fees, or have exclusive pouring rights with Red Bull/Athletic Brewing? (5) Wholesale Margin Maths: At CAD 3.01–4.50 COGS per can, there is zero room for a distributor (25%) and retailer (35–40%) cut at a CAD 5.50 retail price - R10 §2.3, §2.4, §2.9, §3.2."
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "AC-1",
+      "state": "PASS",
+      "evidence": "Checked all 6 prompt questions: (1) recomputed §2.3, §2.4, §3.2, and §3.3 math and challenged peak-cash/break-even logic; (2) named the 3 assumptions that flip the verdict; (3) critiqued demand evidence and designed a <CAD 600 pre-test; (4) audited Canadian regulatory/food-safety gaps and marked 'ask counsel'; (5) evaluated RTD cost, timeline, and technical risk; (6) listed 5 critical investor/lender blind spots."
+    }
+  ],
+  "assumptions_and_confidence": [
+    {
+      "assumption": "Cutting post-launch marketing by CAD 825 in §3.2 will reduce sales velocity and delay break-even beyond Month 12.",
+      "confidence": "high",
+      "reason": "A zero-audience founder cannot cut paid social by 50%, creator fees by 100%, and launch events by 50% while holding revenue constant."
+    },
+    {
+      "assumption": "No Canadian retort or aseptic canning co-packer will accept a 5,000–10,000 unit run for a custom low-acid plant-protein beverage at < CAD 4.00/can.",
+      "confidence": "high",
+      "reason": "R10's own shortlist (§2.2) shows zero Canadian canning lines with low-acid retort/aseptic capability at craft MOQs."
+    },
+    {
+      "assumption": "Hermetically sealing a 'Keep Refrigerated' low-acid plant-protein drink in a metal can without commercial sterility will be blocked or require strict acidification/preservatives from a process authority.",
+      "confidence": "high",
+      "reason": "Standard FDA/CFIA low-acid canned food principles treat anaerobic metal cans as high botulism risk due to foreseeable temperature abuse."
+    }
+  ],
+  "known_failures": [],
+  "untested_gaps": [
+    "NOT_VERIFIED: Underlying month-by-month cash-flow tables, unit economics, and break-even formulas inside R8 (report not attached; only summary figures cited in R10 were auditable).",
+    "NOT_VERIFIED: Full legal/regulatory text and source tables in R5 and R7 (reports not attached).",
+    "NOT_VERIFIED: Live quote availability or current pilot-plant policies at Niagara College and University of Guelph."
+  ],
+  "evidence_ids": [
+    "R10-decision-dossier"
+  ],
+  "model_and_tool_usage": [
+    {
+      "provider_or_tool": "Gemini app",
+      "model_version": "Gemini 4 Argon",
+      "reason": "gate challenger review",
+      "cost_or_usage": "Google AI Pro subscription"
+    }
+  ],
+  "security_or_privacy_notes": [
+    "none found"
+  ],
+  "approval_required": false,
+  "next_action": "Micro-test only (preceded by a CAD 300–600 digital waitlist + guerilla benchmark-tasting pre-test): freeze both the Best Plan (hard NO-GO on debt) and the 60-pouch import until Toronto run-club/sober-rave attendees prove they will scan, sign up, and pre-order."
+}
