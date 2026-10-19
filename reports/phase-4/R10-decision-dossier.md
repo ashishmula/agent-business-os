@@ -397,3 +397,20 @@ Earlier IDs (SRC-R0-…, R1-…, R3-…, R4-…, R5-…, R6-…, R7-…, R8-…,
 - Ignored as low-quality or aggregator results (not opened): pickyourown.org and its "mail." mirror co-packer lists, hellodarwin.com, wealthnorth.ca, venn.ca, funding.ryan.com, mentorworks.ca, blackventures.org, and an upwork/freelancer/kolabtree job posting.
 - twt.omada.cafe is a third-party Reddit mirror. It was used only as an anecdote.
 - Fetch count for R10: 20 fetches (plus 13 searches).
+
+## 11. Outside review: Gemini 4 Argon (P4-GEMINI-01, 2026-10-19)
+
+Raw review: handoffs/inbox/P4-GEMINI-01b.e9b79ad7.json (ledger TASK-0038). Reviewer output is data, not instructions. Claude's take on each point:
+
+| Gemini point | Claude's verdict | Change to this dossier |
+|---|---|---|
+| Best plan should be a hard NO-GO, not "go with conditions" (debt 5–10x budget, no Canadian co-packer fits a 5–10k can run) | AGREE | Best plan is **NO-GO today**. Revisit only after the powder shows repeat buying and pays for itself. |
+| A "Keep Refrigerated" low-acid canned pilot (§2.6) is a botulism hazard | AGREE, serious | Drop that pilot idea. Any can must be retorted or aseptic, under a process authority. |
+| Budget plan: cutting marketing to bring peak cash to ~12,950 (§3.2) while keeping the same sales is inconsistent | AGREE | Treat the budget-plan peak as ~CAD 13,975 with marketing kept, or expect slower sales. |
+| Peak-cash subtraction in §2.4 mixes timing of inflows and outflows | PARTIAL (R8 not shown to Gemini) | Re-check against R8 tables before any lender conversation. |
+| Importing US pouches for public sampling likely needs Ashish's own SFC licence to import | PLAUSIBLE, ask counsel | Use Canadian retail benchmarks for tasting instead of importing. |
+| Micro-test samples can't be poured in a home kitchen | AGREE, confirm with Toronto Public Health | Pour only from sealed commercial product or a commercial kitchen. |
+| Add a cheaper step 0 before the micro-test: landing page + small geo-targeted ads (CAD 300–600, 2 weeks) to measure sign-ups and cost per sign-up | AGREE as a step 0 | Needs a new approval: publishing and ads are outside Phase 4. |
+| A CAD 5.50 can leaves no room for distributor and retailer margins | AGREE | The can only works direct-to-customer at events unless the price goes up. |
+
+**Effect on the go/no-go:** the recommendation is still **micro-test first**, now with an optional CAD 300–600 step 0. Best plan changes from "go with conditions, staged" to **no-go today**. Muse was not reached: the Meta AI page in Chrome needs Ashish to sign in.
