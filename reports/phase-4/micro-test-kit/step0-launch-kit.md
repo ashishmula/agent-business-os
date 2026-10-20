@@ -3,7 +3,7 @@
 Approved 2026-10-20 with one condition from Ashish: **no money is spent until he OKs the exact amount.**
 Claude makes no accounts and pays nothing.
 
-## 1. Pick a working name (Ashish)
+## 1. Working name: **Daybeat** (Ashish picked it 2026-10-20 on the name card)
 Quick web check, 2026-10-20. This is not a trademark search.
 
 | Name | Idea | Quick check |
