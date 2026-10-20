@@ -1,6 +1,6 @@
 # Status board
 
-Generated 2026-10-20T02:35:06Z by `./abos board` · ledger head `6f9c555b81f2` · chain OK · 41 tasks
+Generated 2026-10-20T03:24:19Z by `./abos board` · ledger head `798007a6e384` · chain OK · 42 tasks
 
 _Generated file. Do not edit by hand; change the ledger instead._
 
@@ -24,7 +24,7 @@ _none_
 |---|---|---|---|---|---|---|---|---|
 | TASK-0022 | SHOULD | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | tester-c | One unconstrained red-team run against the boundary (Muse R3C-6) |  | 2026-10-18 |
 
-## Done (37)
+## Done (38)
 
 | Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
 |---|---|---|---|---|---|---|---|---|
@@ -65,6 +65,7 @@ _none_
 | TASK-0015 | SHOULD | DONE | PRD-PLATFORM | G2-phase-3 | orchestrator | Routing and cost-cap tests: critical never below floor, budget soft/hard behaviour, usage… | none | 2026-10-18 |
 | TASK-0016 | SHOULD | DONE | PRD-PLATFORM | G2-phase-3 | researcher | Capability scout pass: re-check skills, MCP servers and repos for Phase 3-4 needs (promis… | Ashish decides which ADOPT-CANDIDATEs to try (needs approval); llm-guard is archived: NOT… | 2026-10-18 |
 | TASK-0020 | SHOULD | DONE | PRD-PLATFORM | G2-phase-3 | tester-c | Repeatable permission probe: re-run the r3c Write/Read/credential probes after every Clau… | Run tools/live/permission-probe.sh after every Claude Code upgrade | 2026-10-18 |
+| TASK-0042 | SHOULD | DONE | PRD-COFFEE-PROTEIN | G3-phase-4 | researcher | R13 protein-pocket cup idea (Ashish): existing products, cost, rules, test plan |  | 2026-10-20 |
 
 ## Parked (not important now) (2)
 
