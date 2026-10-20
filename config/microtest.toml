@@ -1,0 +1,19 @@
+# Pass/fail gates for the demand micro-test (R10 §3.3, §11). T0 scorer: ./abos microtest <csv>.
+# Thresholds are ESTIMATED (derived from R3/R5/R8); change them here, not in code.
+
+[step0]  # landing page + small Toronto ad test (needs its own approval before it runs)
+max_spend_cad = 600
+min_signups = 40            # ESTIMATED: enough sign-ups to read the can-vs-pouch split
+max_cost_per_signup_cad = 15.0  # ESTIMATED: placeholder until R12 benchmarks land
+
+[micro]  # 2-3 events with free tasting samples
+min_samplers = 300
+min_scan_rate = 0.10        # QR scans / samplers
+min_signup_rate = 0.03      # sign-ups / samplers
+min_reinvites = 2           # organizers inviting the booth back
+min_scored_tasters = 40     # R5-R7 taste test: 40-80 tasters
+min_top_box_share = 0.60    # share scoring 4 or 5 out of 5
+
+[privacy]
+# Columns the scorer refuses: tallies only, never personal data in the repo.
+forbidden_columns = ["email", "e-mail", "phone", "name", "first_name", "last_name", "address", "instagram", "handle"]

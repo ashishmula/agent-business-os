@@ -60,6 +60,9 @@ def main(argv: list[str] | None = None) -> int:
     pr.add_argument("gate"); pr.add_argument("--write", metavar="PATH", help="write the report to a new file under reports/")
     pr.add_argument("--force", action="store_true", help="allow --write to overwrite an existing file")
 
+    mt = sub.add_parser("microtest", help="score demand micro-test tallies against config/microtest.toml")
+    mt.add_argument("csv"); mt.add_argument("--config", help="alternate thresholds file")
+
     args = parser.parse_args(argv)
     ledger = Ledger()
 
@@ -141,6 +144,13 @@ def main(argv: list[str] | None = None) -> int:
                                     budget=level, failures=args.failures)
             print(json.dumps(decision, indent=2))
             return 0 if decision["action"] == "RUN" else 3
+        if args.cmd == "microtest":
+            from . import microtest
+            try:
+                return microtest.run_cli(args.csv, args.config)
+            except microtest.MicrotestError as exc:
+                print(f"microtest error: {exc}", file=sys.stderr)
+                return 2
         if args.cmd == "phase-report":
             from . import phasereport
             return phasereport.run_cli(ledger, args.gate, args.write, args.force)
