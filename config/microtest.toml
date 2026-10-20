@@ -3,8 +3,8 @@
 
 [step0]  # landing page + small Toronto ad test (needs its own approval before it runs)
 max_spend_cad = 600
-min_signups = 40            # ESTIMATED: enough sign-ups to read the can-vs-pouch split
-max_cost_per_signup_cad = 15.0  # ESTIMATED: placeholder until R12 benchmarks land
+min_signups = 30            # ESTIMATED: R12 base case is ~50 for CAD 600, bad case ~15
+max_cost_per_signup_cad = 15.0  # ESTIMATED: R12 base case ~CAD 12, range 4-40
 
 [micro]  # 2-3 events with free tasting samples
 min_samplers = 300

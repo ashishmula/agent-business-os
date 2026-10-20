@@ -1,6 +1,6 @@
 # Status board
 
-Generated 2026-10-19T19:39:39Z by `./abos board` · ledger head `b28da40aa237` · chain OK · 38 tasks
+Generated 2026-10-20T02:35:06Z by `./abos board` · ledger head `6f9c555b81f2` · chain OK · 41 tasks
 
 _Generated file. Do not edit by hand; change the ledger instead._
 
@@ -12,21 +12,19 @@ _none_
 
 _none_
 
-## In progress (2)
+## In progress (1)
 
 | Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
 |---|---|---|---|---|---|---|---|---|
 | TASK-0005 | MUST | NOT_TESTED | PRD-PLATFORM | G1-phase-2 | builder | Phase 2b Governor: status line script and hooks write the usage ledger and context fill | Ashish: start one claude session, run /rename TASK-0005 governor check, ask one small que… | 2026-10-18 |
-| TASK-0037 | MUST | IN_PROGRESS | PRD-COFFEE-PROTEIN | G3-phase-4 | orchestrator | R10 Roadmap, decision dossier and go/no-go | Ashish go/no-go | 2026-10-18 |
 
-## Next (MUST first) (2)
+## Next (MUST first) (1)
 
 | Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
 |---|---|---|---|---|---|---|---|---|
-| TASK-0038 | MUST | NOT_STARTED | PRD-PLATFORM | handoff-intake | orchestrator | Handoff P4-GEMINI-01b from GEMINI_APP: Challenger review of the Phase 4 go/no-go dossier | Micro-test only (preceded by a CAD 300–600 digital waitlist + guerilla benchmark-tasting … | 2026-10-19 |
 | TASK-0022 | SHOULD | NOT_STARTED | PRD-PLATFORM | G2-phase-3 | tester-c | One unconstrained red-team run against the boundary (Muse R3C-6) |  | 2026-10-18 |
 
-## Done (32)
+## Done (37)
 
 | Task | Priority | Status | Product | Gate | Owner | What | Next action | Updated |
 |---|---|---|---|---|---|---|---|---|
@@ -56,6 +54,11 @@ _none_
 | TASK-0034 | MUST | DONE | PRD-COFFEE-PROTEIN | G3-phase-4 | researcher | R7 Quality and testing plan |  | 2026-10-18 |
 | TASK-0035 | MUST | DONE | PRD-COFFEE-PROTEIN | G3-phase-4 | builder | R8 Financial model: 3+ scenarios, landed COGS, break-even, runway within CAD 10-15k |  | 2026-10-18 |
 | TASK-0036 | MUST | DONE | PRD-COFFEE-PROTEIN | G3-phase-4 | researcher | R9 Go-to-market: B2C vs B2B vs hybrid, demand tests, stop-loss |  | 2026-10-18 |
+| TASK-0037 | MUST | DONE | PRD-COFFEE-PROTEIN | G3-phase-4 | orchestrator | R10 Roadmap, decision dossier and go/no-go | Ashish go/no-go | 2026-10-20 |
+| TASK-0038 | MUST | DONE | PRD-PLATFORM | handoff-intake | orchestrator | Handoff P4-GEMINI-01b from GEMINI_APP: Challenger review of the Phase 4 go/no-go dossier | Micro-test only (preceded by a CAD 300–600 digital waitlist + guerilla benchmark-tasting … | 2026-10-20 |
+| TASK-0039 | MUST | DONE | PRD-COFFEE-PROTEIN | G3-phase-4 | researcher | R11 verify Gemini's rule claims (import licence, sampling, CASL) |  | 2026-10-20 |
+| TASK-0040 | MUST | DONE | PRD-COFFEE-PROTEIN | G3-phase-4 | researcher | R12 Toronto events, retail benchmarks, ad cost benchmarks |  | 2026-10-20 |
+| TASK-0041 | MUST | DONE | PRD-COFFEE-PROTEIN | G3-phase-4 | builder | Micro-test kit: plan, scorer (./abos microtest), page draft, approval request |  | 2026-10-20 |
 | TASK-0007 | SHOULD | DONE | PRD-PLATFORM | G1-phase-2 | builder | Phase 2c subagent definitions (builder, testers A/B/C, security reviewer) with model and … | none | 2026-10-18 |
 | TASK-0008 | SHOULD | DONE | PRD-PLATFORM | G1-phase-2 | builder | Phase 2c Ollama capacity check and golden tasks for qwen2.5:3b | Phase 3: add T0 grounding check, then enable T1 for schema_extraction | 2026-10-18 |
 | TASK-0010 | SHOULD | DONE | PRD-PLATFORM | G1-phase-2 | orchestrator | Push Phase 2 branch to GitHub | Push again after each Phase 2 commit | 2026-10-18 |
